@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-
 import style from "../assets/style";
+import { setScript } from "../db/firestoreService";
+import {useFileContext} from "../contexts/fileContext";
 
 function FrontPage() {
   // State to check if a file has been uploaded
   const [isFile, setFile] = useState(false);
+  const { setFileName } = useFileContext();
 
   // Check if there already is a script in local storage
   useEffect(() => {
@@ -13,17 +15,42 @@ function FrontPage() {
     }
   }, []);
 
+  // Function to parse the character string
+  const parseCharacterString = (str) => {
+    return str.split("\n").map((line) => {
+      const [name, details] = line.split(" (");
+      const ageScenes = details.slice(0, -1).split("; ").map((item) => {
+        const ageMatch = item.match(/age ([^ ]+)/);
+        const sceneMatch = item.match(/scene ([^ ]+)/);
+        return {
+          age: ageMatch ? ageMatch[1] : null,
+          scene: sceneMatch ? sceneMatch[1] : null,
+        };
+      });
+      return {
+        name: name.trim(),
+        ageScenes,
+      };
+    });
+  };  
+
   // Function to handle file upload
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
 
-    reader.onload = (e) => {
+    reader.onload = async (e) => {
       try {
         const jsonContent = JSON.parse(e.target.result);
 
         localStorage.setItem("script", JSON.stringify(jsonContent));
         setFile(true);
+        setFileName(file.name);
+        
+        // set the script with parsed characters
+        const parsedCharacters = parseCharacterString(jsonContent.metadata);
+        await setScript(file.name, "characters", {parsedCharacters});
+
       } catch (error) {
         console.error("Error reading file:", error);
       }
@@ -71,11 +98,7 @@ function FrontPage() {
       </div>
       <button
         className={`p-2 px-4 rounded text-white 
-          ${
-            isFile
-              ? "bg-green-500 hover:bg-green-600"
-              : "bg-gray-300 cursor-not-allowed"
-          }`}
+          ${isFile ? "bg-green-500 hover:bg-green-600" : "bg-gray-300 cursor-not-allowed"}`}
         disabled={!isFile}
       >
         Generate timeline overview

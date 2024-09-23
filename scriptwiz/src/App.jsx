@@ -3,6 +3,7 @@ import "./App.css";
 
 import FrontPage from "./views/FrontPage";
 import NavBar from "./components/NavBar";
+import CharacterBrowsingPage from "./views/CharacterBrowsingPage";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <NavBar /> 
       <Routes>
         <Route path="/" element={<FrontPage />} />
+        <Route path="/characters" element={<CharacterBrowsingPage />} />
       </Routes>
     </BrowserRouter>
   );
