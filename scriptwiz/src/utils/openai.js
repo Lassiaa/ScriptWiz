@@ -15,7 +15,7 @@ const roles = {
   jsonReader:
     "As an AI tool, you read the given JSON data that contains the script of a movie. Then you parse all of the relevant information. Return the name and synapses of the movie.",
   characteData:
-    "As an AI tool, you read the given JSON data that contains the script of a movie. Get all data related to the characters in the script. Do not include any other information or any additional text. Just return the character data.",
+    "As an AI tool, you read the given JSON data that contains the script of a movie. Get all data related to the characters in the script. Do not include any other information or any additional text and return as json. Just return the characters name, age, scenes and dialogues.",
 };
 
 // Request data for the API, define what model to use
@@ -113,7 +113,7 @@ const makeApiRequest = async (prompt, role) => {
       const tokenTotal = response.data.usage.total_tokens;
       const tokenPrompt = response.data.usage.prompt_tokens;
       const tokenResponse = response.data.usage.completion_tokens;
-      const responseRole = response.data.choices[0].message.role;
+      const responseRole = role;
       const responseText = response.data.choices[0].message.content;
       const promptText = requestData.messages[0].content;
 
