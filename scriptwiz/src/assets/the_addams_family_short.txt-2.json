@@ -1,0 +1,521 @@
+{
+  "metadata": "Gomez (age: 35, 1-15A; age 36, 16-30)  \nMorticia (age: 34, 1-15A; age 35, 16-30)  \nGranny (age: 70, 1-15A; age 71, 16-30)  \nPugsley (age: 9, 1-15A; age 10, 16-30)  \nWednesday (age: 10, 1-15A; age 11, 16-30)  \nLurch (age: 50, 1-15A; age 51, 16-30)  \nThing (age: N/A, 1-30)  \n\n(Characters' ages are based on the timeline of the script. The ages may vary slightly in later scenes as the characters progress through the narrative.)",
+  "scenes": [
+    {
+      "scene_number": "A1",
+      "scene_number_extraction_reason": "The scene number is clearly labeled as A1 in the script text at line 32.",
+      "start_line_number": 32,
+      "start_line_number_extraction_reason": "The scene starts at line 32 as indicated by the scene header 'EXT. ADDAMS MANSION FRONT STEPS - CHRISTMAS EVE'.",
+      "synopsis": "The Addams Family gleefully pours pitch on carolers from the mansion roof.",
+      "time": "EVENING",
+      "location": "Addams Mansion Front Steps",
+      "set": {
+        "type": [
+          "EXT"
+        ]
+      },
+      "eights": 3,
+      "page_break_count": 0,
+      "elements": {
+        "cast_members": [
+          {
+            "name": "Gomez",
+            "age": "35"
+          },
+          {
+            "name": "Morticia",
+            "age": "34"
+          },
+          {
+            "name": "Granny",
+            "age": "70"
+          },
+          {
+            "name": "Pugsley",
+            "age": "9"
+          },
+          {
+            "name": "Wednesday",
+            "age": "10"
+          },
+          {
+            "name": "Lurch",
+            "age": "50"
+          }
+        ],
+        "background_actors": [
+          {
+            "name": "Carolers",
+            "age": null
+          }
+        ],
+        "stunts": [],
+        "vehicles": [],
+        "props": [
+          "cauldron",
+          "bubbling pitch"
+        ],
+        "camera": [
+          "slow pan",
+          "push in"
+        ],
+        "special_effects": [],
+        "wardrobe": [],
+        "makeup_or_hair": [],
+        "security": [
+          "ensure safety harnesses for actors on roof"
+        ],
+        "greenery": [],
+        "special_equipments": [],
+        "art_department": [],
+        "animals": [],
+        "animal_wrangler": [],
+        "music": [
+          "Little Drummer Boy"
+        ],
+        "sound": [
+          "singing",
+          "cloying roundelay"
+        ],
+        "set_dressing": [
+          "black wreath",
+          "broken windows"
+        ],
+        "vfx": [],
+        "mechanical_effects": [],
+        "miscellaneous": [],
+        "notes": [
+          "Scene contains violence: pouring pitch on carolers."
+        ]
+      },
+      "sceneText": "A1  EXT. ADDAMS MANSION FRONT STEPS - CHRISTMAS EVE           A1\n\n     A GROUP OF CAROLERS, their eager faces upturned, SINGS an\n     endless and cloying roundelay of \"Little Drummer Boy.\"\n     They sing with self-righteous good cheer. As they\n     pompously begin their umpteenth verse,\n\n     THE CAMERA SLOWLY PANS UP THE ADDAMS MANSION -- past\n     the black wreath on the front door, past broken windows,\n     weather-beaten shingles, a creaking shutter.\n\n     THE CAMERA CONTINUES TO PAN TO THE ROOF\n\n     where the Addams Family members, GOMEZ, MORTICIA, GRANNY,\n     PUGSLEY, WEDNESDAY, and LURCH, their faithful butler,\n     gleefully POUR a CAULDRON OF BUBBLING, STEAMING PITCH\n     over the edge.\n\n     AS THE CAULDRON TIPS, THE CAMERA PUSHES INSIDE, THE\n     BLACKNESS OF THE PITCH FILLS THE SCREEN. TITLES BEGIN.\n\n                                              DISSOLVE TO:\n",
+      "current_day": 1,
+      "page_number": 1,
+      "pages": 1
+    },
+    {
+      "scene_number": "1",
+      "scene_number_extraction_reason": "The scene number is explicitly mentioned at the beginning of the scene as '1 INT. DIM HALLWAY - SEVEN O'CLOCK A.M.'",
+      "start_line_number": 55,
+      "start_line_number_extraction_reason": "The scene starts at line 55 with the header '1 INT. DIM HALLWAY - SEVEN O'CLOCK A.M.'",
+      "synopsis": "Thing, the disembodied hand, navigates through the Addams Family's dim hallway, interacting with a mechanical clock.",
+      "time": "MORNING",
+      "location": "Dim Hallway",
+      "set": {
+        "type": [
+          "INT"
+        ]
+      },
+      "eights": 5,
+      "page_break_count": 1,
+      "elements": {
+        "cast_members": [
+          {
+            "name": "Gomez",
+            "age": "35"
+          },
+          {
+            "name": "Morticia",
+            "age": "34"
+          },
+          {
+            "name": "Granny",
+            "age": "70"
+          },
+          {
+            "name": "Pugsley",
+            "age": "9"
+          },
+          {
+            "name": "Wednesday",
+            "age": "10"
+          },
+          {
+            "name": "Lurch",
+            "age": "50"
+          },
+          {
+            "name": "Thing",
+            "age": "N/A"
+          }
+        ],
+        "background_actors": [],
+        "stunts": [],
+        "vehicles": [],
+        "props": [
+          "Cuckoo clock",
+          "Fog machine",
+          "Gallows"
+        ],
+        "camera": [
+          "C.U. (Close Up) of the clock",
+          "LOW TRACKING SHOT following Thing"
+        ],
+        "special_effects": [
+          "Little bursts of fog"
+        ],
+        "wardrobe": [
+          "Pajamas",
+          "Bedroom slippers"
+        ],
+        "makeup_or_hair": [],
+        "security": [],
+        "greenery": [],
+        "special_equipments": [],
+        "art_department": [
+          "Replica of the Addams Family house clock"
+        ],
+        "animals": [],
+        "animal_wrangler": [],
+        "music": [],
+        "sound": [
+          "Chiming of the clock"
+        ],
+        "set_dressing": [
+          "Dim hallway"
+        ],
+        "vfx": [],
+        "mechanical_effects": [
+          "Mechanical figures in the clock"
+        ],
+        "miscellaneous": [],
+        "notes": [
+          "Scene contains intimacy with mechanical kisses"
+        ]
+      },
+      "sceneText": "1   INT. DIM HALLWAY - SEVEN O'CLOCK A.M.                     1\n\n     C.U. AN OVER-SIZED \"CUCKOO\" CLOCK --\n\n     The clock is a perfect REPLICA OF THE ADDAMS FAMILY\n     HOUSE, down to the creaking shutter. It chimes the hour.\n\n     In ONE WINDOW, a LITTLE MECHANICAL GOMEZ bends a\n     MECHANICAL MORTICIA back until she's almost off her feet\n     and plants a kiss between her clockwork decolletage.\n     One, two, three mechanical kisses, counting toward\n     seven o'clock.\n\n     IN ANOTHER WINDOW, A MECHANICAL PUGSLEY hangs a\n     MECHANICAL WEDNESDAY from a noose on a gallows, up and\n     down.\n\n     Meanwhile, little BURSTS OF FOG float off the rooftop\n     where a little MECHANICAL GRANNY cranks her fog machine.\n\n     The front door of the house pops open, and a MECHANICAL\n     LURCH appears and begins sweeping.\n\n     Just then, THING, the disembodied hand with the\n     full-bodied personality, CLIMBS into view over the back\n     of the clock.\n\n     Thing leaps to the floor and SCAMPERS down the hall.\n\n     LOW TRACKING SHOT\n\n     follows Thing along the hallway.         (CONTINUED)\n [PAGE BREAK]    THE ADDAMS FAMILY - 11/28/90                   2.\n\n 1   CONTINUED:                                              1\n\n     He runs past a couple of doors, past a pair of LEGS in\n     pajamas, feet in bedroom slippers. He skids to a halt\n     and BACK TRACKS to the legs. He pulls on the cuff of\n     the pajama bottoms. They belong to GOMEZ, who stands\n     in the doorway to\n",
+      "current_day": 2,
+      "page_number": 1,
+      "pages": 2
+    },
+    {
+      "scene_number": "A2",
+      "scene_number_extraction_reason": "The scene header clearly indicates the scene number as A2, and it is consistent with the scene offset provided.",
+      "start_line_number": 97,
+      "start_line_number_extraction_reason": "The scene starts at line 97 as indicated by the scene header 'INT. FESTER'S ROOM A2'.",
+      "synopsis": "Gomez mourns the long absence of his brother Fester in a shrine-like room.",
+      "time": "MORNING",
+      "location": "Fester's Room",
+      "set": {
+        "type": [
+          "INT"
+        ]
+      },
+      "eights": 5,
+      "page_break_count": 0,
+      "elements": {
+        "cast_members": [
+          {
+            "name": "Gomez",
+            "age": "35"
+          }
+        ],
+        "background_actors": [],
+        "stunts": [],
+        "vehicles": [],
+        "props": [
+          "fez",
+          "smoking jacket",
+          "cigar",
+          "football pennant",
+          "headless sports trophies",
+          "high school photo"
+        ],
+        "camera": [],
+        "special_effects": [],
+        "wardrobe": [
+          "fez",
+          "smoking jacket",
+          "pajamas"
+        ],
+        "makeup_or_hair": [],
+        "security": [],
+        "greenery": [],
+        "special_equipments": [],
+        "art_department": [
+          "dust",
+          "cobwebs",
+          "mementoes"
+        ],
+        "animals": [],
+        "animal_wrangler": [],
+        "music": [],
+        "sound": [],
+        "set_dressing": [
+          "dust",
+          "cobwebs",
+          "football pennant",
+          "headless sports trophies",
+          "high school photo"
+        ],
+        "vfx": [],
+        "mechanical_effects": [],
+        "miscellaneous": [],
+        "notes": []
+      },
+      "sceneText": "A2  INT. FESTER'S ROOM                                      A2\n\n     Gomez wears a fez and a smoking jacket over his pajamas.\n     Even at this early hour, he puffs on his trademark cigar.\n     Gomez is all enthusiasm or all despair. At the moment,\n     he radiates unfathomable woe.\n\n                                        GOMEZ\n               Think of it, Thing. He's been gone\n               for twenty-five years. For twenty-\n               five years we've attempted to\n               contact Fester in the great\n               beyond...\n\n     The room is a dusty, cobweb-filled, long-unoccupied shrine\n     to Gomez's lost brother, Fester. Gomez drifts in from the\n     doorway.\n\n     The room has remained untouched since Fester's\n     disappearance as a teenager. The thick coating of dust\n     and cobwebs adorns the mementoes of a rapscallion's youth\n     - a football pennant from Alcatraz, headless sports\n     trophies, a high school photo with all the other students\n     keeping as much distance from Fester as possible.\n\n     As he lovingly and morosely surveys the room:\n\n                                        GOMEZ\n               ... And for twenty-five years,\n               nothing. Not a whisper, not a\n               clue. I'm beginning to think my\n               my brother truly is lost.\n\n     Gomez sighs. Thing TUGS at his cuff, pulling him towards\n     the\n",
+      "current_day": 2,
+      "page_number": 2,
+      "pages": 1
+    },
+    {
+      "scene_number": "B2",
+      "scene_number_extraction_reason": "The scene number is clearly indicated as B2 in the script text at line 133.",
+      "start_line_number": 133,
+      "start_line_number_extraction_reason": "The scene starts at line 133 as indicated by the scene header 'INT. HALLWAY - SAME TIME'.",
+      "synopsis": "Thing opens a door for Gomez in the hallway.",
+      "time": "MORNING",
+      "location": "Hallway",
+      "set": {
+        "type": [
+          "INT"
+        ]
+      },
+      "eights": 1,
+      "page_break_count": 0,
+      "elements": {
+        "cast_members": [
+          {
+            "name": "Gomez",
+            "age": "35"
+          }
+        ],
+        "background_actors": [],
+        "stunts": [],
+        "vehicles": [],
+        "props": [
+          "old-fashioned door latch"
+        ],
+        "camera": [],
+        "special_effects": [],
+        "wardrobe": [],
+        "makeup_or_hair": [],
+        "security": [],
+        "greenery": [],
+        "special_equipments": [],
+        "art_department": [],
+        "animals": [],
+        "animal_wrangler": [],
+        "music": [],
+        "sound": [],
+        "set_dressing": [],
+        "vfx": [],
+        "mechanical_effects": [],
+        "miscellaneous": [],
+        "notes": []
+      },
+      "sceneText": "B2  INT. HALLWAY - SAME TIME                                B2\n\n     Galloping ahead of Gomez, Thing leaps onto an\n     old-fashioned door latch and the door swings open INTO\n",
+      "current_day": 2,
+      "page_number": 2,
+      "pages": 1
+    },
+    {
+      "scene_number": "2",
+      "scene_number_extraction_reason": "The scene number is clearly indicated as '2' in the scene header at line 138.",
+      "start_line_number": 138,
+      "start_line_number_extraction_reason": "The scene starts at line 138 with the header 'INT. GOMEZ AND MORTICIA'S BEDROOM - SAME TIME'.",
+      "synopsis": "Gomez admires Morticia as she awakens, sharing a moment of passion and melancholy.",
+      "time": "MORNING",
+      "location": "Gomez and Morticia's Bedroom",
+      "set": {
+        "type": [
+          "INT"
+        ]
+      },
+      "eights": 4,
+      "page_break_count": 1,
+      "elements": {
+        "cast_members": [
+          {
+            "name": "Gomez",
+            "age": "35"
+          },
+          {
+            "name": "Morticia",
+            "age": "34"
+          }
+        ],
+        "background_actors": [],
+        "stunts": [],
+        "vehicles": [],
+        "props": [],
+        "camera": [],
+        "special_effects": [],
+        "wardrobe": [
+          "Gomez's formal attire",
+          "Morticia's nightgown"
+        ],
+        "makeup_or_hair": [
+          "Morticia's ghostly white makeup"
+        ],
+        "security": [],
+        "greenery": [],
+        "special_equipments": [],
+        "art_department": [
+          "Scarlet satin sheets"
+        ],
+        "animals": [],
+        "animal_wrangler": [],
+        "music": [],
+        "sound": [],
+        "set_dressing": [
+          "Red pillowcase"
+        ],
+        "vfx": [],
+        "mechanical_effects": [],
+        "miscellaneous": [],
+        "notes": [
+          "Intimacy: Gomez gazes adoringly at Morticia."
+        ]
+      },
+      "sceneText": "2   INT. GOMEZ AND MORTICIA'S BEDROOM - SAME TIME           2\n\n     Gomez approaches the bed. Asleep on scarlet satin sheets\n     is...\n\n     MORTICIA\n\n                                                (CONTINUED)\n [PAGE BREAK]    THE ADDAMS FAMILY - 11/28/90                         3.\n\n 2   CONTINUED:                                               2\n\n                                       GOMEZ\n                          (gazing at Morticia)\n              Look at her -- I would die for her.\n              I would kill for her. Either way\n              -- what bliss.\n\n     Low-voiced, incisive, and subtle, with Morticia, smiles\n     are rare. The ghostly whiteness of her complexion is\n     offset by the red of the pillowcase upon which her hair\n     is spread like a diabolic halo. A dark Garbo, sultry\n     and remote, she's a ruined beauty.\n\n     Morticia OPENS HER EYES.\n\n                                       GOMEZ\n                          (adoringly)\n              Unhappy, darling?\n\n                                       MORTICIA\n                          (passionately)\n              Oh, yes, yes. Completely.\n\n                                                 CUT TO:\n\n A3  OMITTED                                                  A3\n",
+      "current_day": 2,
+      "page_number": 2,
+      "pages": 2
+    },
+    {
+      "scene_number": "3",
+      "scene_number_extraction_reason": "The scene number is explicitly mentioned as 3 in the script at line 176.",
+      "start_line_number": 176,
+      "start_line_number_extraction_reason": "The scene starts at line 176 as indicated by the scene header 'INT. PUGSLEY'S ROOM - SAME TIME'.",
+      "synopsis": "Pugsley experiments with his chemistry set and shrinks himself to the size of a mouse.",
+      "time": "MORNING",
+      "location": "Pugsley's Room",
+      "set": {
+        "type": [
+          "INT"
+        ]
+      },
+      "eights": 4,
+      "page_break_count": 1,
+      "elements": {
+        "cast_members": [
+          {
+            "name": "Pugsley",
+            "age": "9"
+          }
+        ],
+        "background_actors": [],
+        "stunts": [],
+        "vehicles": [],
+        "props": [
+          "kid-sized chemistry set",
+          "road signs",
+          "sawed-off stop signs",
+          "cylindrical fish tank"
+        ],
+        "camera": [],
+        "special_effects": [
+          "steam from beaker",
+          "transformation effect"
+        ],
+        "wardrobe": [
+          "human-size pajamas"
+        ],
+        "makeup_or_hair": [],
+        "security": [
+          "ensure safe handling of chemicals"
+        ],
+        "greenery": [],
+        "special_equipments": [],
+        "art_department": [
+          "road signs",
+          "sawed-off stop signs",
+          "fish tank with piranha"
+        ],
+        "animals": [
+          "piranha"
+        ],
+        "animal_wrangler": [
+          "piranha handler"
+        ],
+        "music": [],
+        "sound": [
+          "sound of steaming chemicals"
+        ],
+        "set_dressing": [
+          "road signs on walls",
+          "fish tank"
+        ],
+        "vfx": [
+          "shrinking effect"
+        ],
+        "mechanical_effects": [],
+        "miscellaneous": [],
+        "notes": []
+      },
+      "sceneText": "3   INT. PUGSLEY'S ROOM - SAME TIME                          3\n\n     Pugsley crouches on the floor, playing with his kid-sized\n     chemistry set.\n\n     The walls of his room are covered with road signs he's\n     collected -- \"Bridge Out!\", \"Detour! Excavation Ahead!\",\n     \"Dangerous Undertow!\", \"Keep Clear! High Voltage!\"\n     SAWED-OFF STOP SIGNS, still on their poles, are stacked\n     in the corner.\n\n     In another corner stands a CYLINDRICAL FLOOR-TO-CEILING\n     FISH TANK, FILLED WITH PIRANHA.\n\n     This tubby energetic monster of a nine-year-old boy has\n     every chance of growing up to be the public monster his\n     parents would be proud of.\n\n     He MIXES chemicals in a beaker. The brew steams. Grin-\n     ning wickedly, Pugsley SWALLOWS it down.\n\n     He contorts, undergoing the beginnings of a transforma-\n     tion, then SHRINKS to the size of a mouse. Laughing, he\n     crawls out of his human-size pajamas.\n\n                                                 CUT TO:\n\n 4   OMITTED                                                  4\n [PAGE BREAK]    THE ADDAMS FAMILY - 11/28/90                          4.\n",
+      "current_day": 2,
+      "page_number": 3,
+      "pages": 2
+    },
+    {
+      "scene_number": "A5",
+      "scene_number_extraction_reason": "The scene number is clearly marked as A5 in the script text at line 206.",
+      "start_line_number": 206,
+      "start_line_number_extraction_reason": "The scene starts at line 206 as indicated by the scene header 'INT. ATTIC - SAME TIME'.",
+      "synopsis": "Wednesday Addams has her tooth pulled by a trap door with Granny's help.",
+      "time": "MORNING",
+      "location": "Attic",
+      "set": {
+        "type": [
+          "INT"
+        ]
+      },
+      "eights": 3,
+      "page_break_count": 0,
+      "elements": {
+        "cast_members": [
+          {
+            "name": "Wednesday Addams",
+            "age": "10"
+          },
+          {
+            "name": "Granny",
+            "age": "70"
+          }
+        ],
+        "background_actors": [],
+        "stunts": [],
+        "vehicles": [],
+        "props": [
+          "string",
+          "trap door",
+          "cigar box"
+        ],
+        "camera": [],
+        "special_effects": [],
+        "wardrobe": [
+          "Wednesday's black dress"
+        ],
+        "makeup_or_hair": [
+          "Granny's disheveled hair"
+        ],
+        "security": [],
+        "greenery": [],
+        "special_equipments": [],
+        "art_department": [
+          "Addams family objects in attic"
+        ],
+        "animals": [],
+        "animal_wrangler": [],
+        "music": [],
+        "sound": [],
+        "set_dressing": [
+          "assorted human and animal teeth",
+          "fangs",
+          "dentures",
+          "glass eyes"
+        ],
+        "vfx": [],
+        "mechanical_effects": [],
+        "miscellaneous": [],
+        "notes": []
+      },
+      "sceneText": "A5  INT. ATTIC - SAME TIME                                    A5\n\n     Solemn and mournful, ten-year-old Wednesday has black\n     hair and white skin like her mother. She sits on a stool\n     among the stored Addams' family objects, ONE END OF A\n     STRING TIED TO HER TOOTH, THE OTHER TIED TO A TRAP DOOR.\n\n     The trap door is flung open, GRANNY pokes her head\n     through. She's a giggly hag who looks like she was in\n     the bathtub when the hairdryer fell in.\n\n     Wednesday's pulled tooth swings at the end of the string.\n\n                                       WEDNESDAY\n              Thank you, Grandmama.\n\n     In a foul mood, Granny tromps up into the attic.\n\n                                       GRANNY\n              You kids are going to have to kill\n              your own breakfast this morning.\n\n     Wednesday opens a cigar box. Inside the box are assorted\n     human and animal teeth, fangs and dentures, along with a\n     collection of glass eyes. Wednesday drops her tooth in\n     the box.\n\n                                                  CUT TO:\n",
+      "current_day": 2,
+      "page_number": 4,
+      "pages": 1
+    }
+  ]
+}

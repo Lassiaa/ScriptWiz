@@ -6,6 +6,10 @@ const style = {
   fileInfo: "my-6",
   fileUpload:
     "bg-blue-500 text-white p-2 px-4 rounded cursor-pointer hover:bg-blue-600",
+  overviewTable:
+  "flex flex-col items-stretch gap-5 w-40",
+  overviewTableItem:
+  "text-2xl border-2 rounded-md p-2",
 };
 
 export default style;
