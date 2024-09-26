@@ -31,7 +31,7 @@ const Overview = () => {
     return(
     <main className="mainStyling p-10">
         <article>
-            <h1 className="pb-10">Timeline Overview</h1>
+            <h1 className="pb-10">Overview</h1>
         </article>
         <article className="flex flex-row">
             {/* Table Title */}
