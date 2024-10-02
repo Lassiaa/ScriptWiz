@@ -74,7 +74,7 @@ function FrontPage() {
       try {
         const aiPrompt = scriptContent;
         // const aiRole = roles.jsonReader;
-        const aiRole = roles.characteData;
+        const aiRole = roles.jsonReader;
         const aiResult = await makeApiRequest(aiPrompt, aiRole);
         setAiResponse(aiResult);
       } catch (error) {

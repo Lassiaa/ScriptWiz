@@ -1,7 +1,6 @@
 import axios from "axios";
 
-// const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
-const apiKey = import.meta.env.VITE_TEST;
+const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
 const endpoint = "https://api.openai.com/v1/chat/completions";
 
 // Headers for the API request
