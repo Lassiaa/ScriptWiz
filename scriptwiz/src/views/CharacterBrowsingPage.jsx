@@ -13,7 +13,7 @@ function CharacterBrowsingPage() {
       return;
     }
 
-    const response = await fetchCharacters(fileName);
+    const response = await fetchCharacters(fileName, "characters");
 
     if (response.success) {
       console.log("Fetched characters:", response.data);

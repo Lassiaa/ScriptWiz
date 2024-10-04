@@ -57,7 +57,11 @@ function FrontPage() {
 
         // set the script with parsed characters
         const parsedCharacters = parseCharacterString(jsonContent.metadata);
+        // set the script with all the listed scenes
+        const scenes = jsonContent.scenes
+
         await setScript(file.name, "characters", { parsedCharacters });
+        await setScript(file.name, "scenes", { scenes });
       } catch (error) {
         console.error("Error reading file:", error);
       }

@@ -10,9 +10,9 @@ import {
 } from "firebase/firestore";
 
 // Fetch all documents from a specific collection
-const fetchCharacters = async (collectionName) => {
+const fetchCharacters = async (collectionName, documentName) => {
   try {
-    const docRef = doc(db, collectionName, "characters");
+    const docRef = doc(db, collectionName, documentName);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {

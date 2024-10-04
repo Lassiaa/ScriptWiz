@@ -17,7 +17,9 @@ const roles = {
     "As an AI tool, you read the given JSON data that contains the script of a movie. Get all data related to the characters in the script. Do not include any other information or any additional text and return as json. Just return the characters name, age, scenes and dialogues.",
   scheduler:
     "As an AI tool, you read the given JSON data that contains the script of a movie. Then generate a filming schedule based on the scenes and characters in the script. Return the schedule in a json format.",
-};
+  mainCharacter:
+    "As an AI tool, you read the given JSON data that contains the script of a movie. Then generate a list of what you think are the main characters. Return the schedule in a json format.",
+  };
 
 // Request data for the API, define what model to use
 const requestData = {
