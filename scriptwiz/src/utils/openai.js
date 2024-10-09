@@ -1,4 +1,5 @@
 import axios from "axios";
+import { setScript } from "../db/firestoreService";
 
 const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
 const endpoint = "https://api.openai.com/v1/chat/completions";
@@ -19,7 +20,7 @@ const roles = {
     "As an AI tool, you read the given JSON data that contains the script of a movie. Then generate a filming schedule based on the scenes and characters in the script. Return the schedule in a json format.",
   mainCharacter:
     "As an AI tool, you read the given JSON data that contains the script of a movie. Then generate a list of what you think are the main characters. Return the schedule in a json format.",
-  };
+};
 
 // Request data for the API, define what model to use
 const requestData = {
@@ -37,7 +38,7 @@ const requestData = {
 };
 
 // Function to write to log file
-const writeToLog = (
+const writeToLog = async (
   model,
   tokenTotal,
   role,
@@ -58,46 +59,22 @@ const writeToLog = (
       response,
       tokenResponse,
     },
+    timestamp: new Date().toISOString(),
   };
 
-  let log = [];
+  try {
+    const logId = `log_${Date.now()}`;
+    const result = await setScript("aiLogs", logId, logEntry);
 
-  const logFileData = localStorage.getItem("aiLog.json");
-
-  if (logFileData) {
-    log = JSON.parse(logFileData);
-  }
-
-  log.push(logEntry);
-
-  localStorage.setItem("aiLog.json", JSON.stringify(log, null, 2));
-};
-
-// Function to export log to JSON data
-const exportToJSONFile = () => {
-  const logData = localStorage.getItem("aiLog.json");
-  if (logData) {
-    const logJSON = JSON.parse(logData);
-    const logJSONString = JSON.stringify(logJSON, null, 2);
-
-    const blob = new Blob([logJSONString], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.style.display = "none";
-    a.href = url;
-    a.download = "log.json";
-    document.body.appendChild(a);
-
-    a.click();
-
-    URL.revokeObjectURL(url);
-  } else {
-    console.error("No log data found in localStorage.");
+    if (result.success) {
+      console.log("Log saved successfully with ID:", logId);
+    } else {
+      console.error("Error saving log:", result.message);
+    }
+  } catch (error) {
+    console.error("Error writing to Firestore:", error);
   }
 };
-
-let responseFinal;
 
 const makeApiRequest = async (prompt, role) => {
   const maxRetries = 1;
@@ -140,4 +117,4 @@ const makeApiRequest = async (prompt, role) => {
   }
 };
 
-export { makeApiRequest, exportToJSONFile, responseFinal, roles };
+export { makeApiRequest, roles };
