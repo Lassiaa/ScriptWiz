@@ -17,7 +17,8 @@ const roles = {
   characteData:
     "As an AI tool, you read the given JSON data that contains the script of a movie. Get all data related to the characters in the script. Do not include any other information or any additional text and return as json. Just return the characters name, age, scenes and dialogues.",
   scheduler:
-    "As an AI tool, you read the given JSON data that contains the script of a movie. Then generate a filming schedule based on the scenes and characters in the script. Return the schedule in a json format.",
+    // "You generate a filming schedule in the most efficient way based on the scenes, characters, props, locations, and times indicated in the script. You then group the scenes by day starting from day 1. Ensure the filming days are arranged efficiently by grouping scenes with the same locations or characters where possible. Return the final schedule in a structured JSON format with the day, scenes, filming time in hours, location, characters, props, time of day and the hour when filming should start. Keep breaks in mind and ensure the schedule is realistic. Use 24-hour clock. Do not add any text or information other than the JSON.",
+    "As an AI tool, you process a movie script in JSON format to generate an efficient filming schedule. Group scenes with common locations, characters, or props to minimize setup time and maximize filming efficiency. Return a structured JSON output. Filming day contains: day number and scenes. Scenes contain: filming time in hours, location, characters, props, time of day, and start and end time in 24-hour format. Ensure each scene's start time accounts for the time required to film the previous scenes, with no overlaps, and include realistic breaks between scenes.",
   mainCharacter:
     "As an AI tool, you read the given JSON data that contains the script of a movie. Then generate a list of what you think are the main characters. Return the schedule in a json format.",
 };

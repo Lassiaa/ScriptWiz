@@ -1,0 +1,119 @@
+{
+  "filming_days": [
+    {
+      "day_number": 1,
+      "scenes": [
+        {
+          "scene_number": "A1",
+          "start_time": "18:00",
+          "end_time": "21:00",
+          "location": "Addams Mansion Front Steps",
+          "characters": [
+            "Gomez",
+            "Morticia",
+            "Granny",
+            "Pugsley",
+            "Wednesday",
+            "Lurch"
+          ],
+          "props": ["cauldron", "bubbling pitch"],
+          "time_of_day": "EVENING",
+          "filming_time_hours": 3
+        },
+        {
+          "scene_number": "A10",
+          "start_time": "02:00",
+          "end_time": "03:00",
+          "location": "Addams Mansion Front Steps",
+          "characters": [
+            "Gomez",
+            "Morticia",
+            "Granny",
+            "Pugsley",
+            "Wednesday",
+            "Lurch"
+          ],
+          "props": ["cauldron", "bubbling pitch"],
+          "time_of_day": "EVENING",
+          "filming_time_hours": 3
+        }
+      ]
+    },
+    {
+      "day_number": 2,
+      "scenes": [
+        {
+          "scene_number": "1",
+          "start_time": "07:00",
+          "end_time": "08:00",
+          "location": "Dim Hallway",
+          "characters": ["Thing"],
+          "props": ["Cuckoo clock", "Fog machine", "Gallows"],
+          "time_of_day": "MORNING",
+          "filming_time_hours": 1
+        },
+        {
+          "scene_number": "A2",
+          "start_time": "08:15",
+          "end_time": "09:00",
+          "location": "Fester's Room",
+          "characters": ["Gomez"],
+          "props": [
+            "fez",
+            "smoking jacket",
+            "cigar",
+            "football pennant",
+            "headless sports trophies",
+            "high school photo"
+          ],
+          "time_of_day": "MORNING",
+          "filming_time_hours": 1
+        },
+        {
+          "scene_number": "B2",
+          "start_time": "09:15",
+          "end_time": "10:00",
+          "location": "Hallway",
+          "characters": ["Gomez"],
+          "props": ["old-fashioned door latch"],
+          "time_of_day": "MORNING",
+          "filming_time_hours": 1
+        },
+        {
+          "scene_number": "2",
+          "start_time": "10:15",
+          "end_time": "11:00",
+          "location": "Gomez and Morticia's Bedroom",
+          "characters": ["Gomez", "Morticia"],
+          "time_of_day": "MORNING",
+          "filming_time_hours": 1
+        },
+        {
+          "scene_number": "3",
+          "start_time": "11:15",
+          "end_time": "12:00",
+          "location": "Pugsley's Room",
+          "characters": ["Pugsley"],
+          "props": [
+            "kid-sized chemistry set",
+            "road signs",
+            "sawed-off stop signs",
+            "cylindrical fish tank"
+          ],
+          "time_of_day": "MORNING",
+          "filming_time_hours": 1
+        },
+        {
+          "scene_number": "A5",
+          "start_time": "12:15",
+          "end_time": "13:00",
+          "location": "Attic",
+          "characters": ["Wednesday Addams", "Granny"],
+          "props": ["string", "trap door", "cigar box"],
+          "time_of_day": "MORNING",
+          "filming_time_hours": 1
+        }
+      ]
+    }
+  ]
+}

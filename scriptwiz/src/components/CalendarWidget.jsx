@@ -10,6 +10,7 @@ function CalendarWidget({ onDateChange }) {
   const handleDateChange = (date) => {
     setValue(date);
     onDateChange(date);
+    setIsOpen(false);
   };
 
   return (
