@@ -10,8 +10,9 @@ const Overview = () => {
   // FOR DEV MOCK DATA TESTING ONLY
   // const fileName = json.scenes;
   // USE THIS WHEN NOT TESTING
-  const { fileName } = json.scenes;
+  const { fileName } = useFileContext();
   console.log(fileName);
+  console.log('test');
 
   {
     /* FOR DEV TEMPLATE USE (using local files instead from db) */
