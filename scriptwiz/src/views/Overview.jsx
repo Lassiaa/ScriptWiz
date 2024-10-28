@@ -8,9 +8,9 @@ const Overview = () => {
   const [scenes, setScenes] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
   // FOR DEV MOCK DATA TESTING ONLY
-  const fileName = json.scenes;
+  // const fileName = json.scenes;
   // USE THIS WHEN NOT TESTING
-  // const { fileName } = json.scenes;
+  const { fileName } = json.scenes;
   console.log(fileName);
 
   {
