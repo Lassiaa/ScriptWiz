@@ -13,6 +13,9 @@ function SchedulePage() {
   const [showModal, setShowModal] = useState(false);
   const [selectedScene, setSelectedScene] = useState(null);
 
+  const [isPropsVisible, setIsPropsVisible] = useState(false);
+  const [isCharVisible, setIsCharVisible] = useState(false);
+
   const openSceneModal = (scene) => {
     setSelectedScene(scene);
     setShowModal(true);
@@ -161,22 +164,8 @@ function SchedulePage() {
 
         {!isDay ? (
           <button
-            className="bg-yellow-300 w-20 justify-items-center"
-            onClick={setDay}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="size-6"
-            >
-              <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
-            </svg>
-          </button>
-        ) : (
-          <button
             className="bg-blue-300 w-20 justify-items-center"
-            onClick={setNight}
+            onClick={setDay}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -191,34 +180,24 @@ function SchedulePage() {
               />
             </svg>
           </button>
+        ) : (
+          <button
+            className="bg-yellow-300 w-20 justify-items-center"
+            onClick={setNight}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="size-6"
+            >
+              <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
+            </svg>
+          </button>
         )}
       </article>
 
       <article className="flex flex-row">
-        <section className={style.scheduleFilters}>
-          <div className={style.scheduleFiltersHeading}>
-            <h2 className={style.scheduleFiltersH2}>Filters</h2>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
-              />
-            </svg>
-          </div>
-          <ul>
-            <li>Characters</li>
-            <li>Scenes</li>
-            <li>Props</li>
-          </ul>
-        </section>
         <section className=" border-2 rounded-md grow">
           <div className="relative grid grid-cols-12 gap-2 text-center h-96 auto-rows-max">
             <div className="absolute inset-0 grid grid-cols-12 gap-2 pointer-events-none">
@@ -243,21 +222,52 @@ function SchedulePage() {
                   );
                   const gridColumnStart = startIndex + 1;
                   return (
-                    <button
+                    <div
                       key={`${scene.scene_number}-${index}`}
-                      className={`${scene.bgColor} p-2 rounded-md max-h-fit z-10`}
                       style={{
                         gridColumn: `${gridColumnStart} / span ${scene.columnSpan}`,
                       }}
-                      onClick={() => openSceneModal(scene)}
+                      className="rounded-md max-h-fit z-10"
                     >
-                      <div className="scene-number">
-                        Scene: {scene.scene_number}
+                      <div
+                        onClick={() => setIsPropsVisible(!isPropsVisible)}
+                        className="cursor-pointer bg-blue-300 p-1 my-1 rounded-md"
+                      >
+                        Props
                       </div>
-                      <div className="exact-times">
-                        {scene.exact_start_time} {" - "} {scene.exact_end_time}
+                      {isPropsVisible && (
+                        <div className="bg-blue-300 p-2 my-1 rounded-md">
+                          {scene.props.map((prop, index) => (
+                            <div key={index}>{prop}</div>
+                          ))}
+                        </div>
+                      )}
+
+                      <button
+                        className={`w-full ${scene.bgColor}`}
+                        onClick={() => openSceneModal(scene)}
+                      >
+                        <div>Scene: {scene.scene_number}</div>
+                        <div>
+                          {scene.exact_start_time} {" - "}{" "}
+                          {scene.exact_end_time}
+                        </div>
+                      </button>
+
+                      <div
+                        onClick={() => setIsCharVisible(!isCharVisible)}
+                        className="cursor-pointer bg-lime-300 p-1 my-1 rounded-md"
+                      >
+                        Characters
                       </div>
-                    </button>
+                      {isCharVisible && (
+                        <div className="bg-lime-300 p-2 my-1 rounded-md">
+                          {scene.characters.map((character, index) => (
+                            <div key={index}>{character}</div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   );
                 })
             )}
