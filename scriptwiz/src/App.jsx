@@ -9,7 +9,7 @@ import SchedulePage from "./views/SchedulePage";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.DEV ? '/' : '/ScriptWiz/'}>
       <NavBar />
       <Routes>
         <Route path="/" element={<FrontPage />} />
