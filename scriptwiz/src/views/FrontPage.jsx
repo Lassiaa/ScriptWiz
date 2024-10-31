@@ -94,7 +94,7 @@ function FrontPage() {
 
   return (
     <div className={style.frontPageBody}>
-      <h1 className={style.frontPageHeading}>ScriptWiz</h1>
+      <h1 className={style.frontPageHeading}>ScriptWiz, build test</h1>
       <p>Please upload your .json file to start</p>
       <div className={style.card}>
         <svg
