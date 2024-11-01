@@ -1,12 +1,12 @@
 {
   "name": "scriptwiz",
-  "homepage": "https://lassiaa.github.io/ScriptWiz/",
+  "homepage": "https://lassiaa.github.io/ScriptWiz/#",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base https://lassiaa.github.io/ScriptWiz/",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
