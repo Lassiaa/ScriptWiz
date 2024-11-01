@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base https://lassiaa.github.io/ScriptWiz/#",
+    "build": "vite build --base https://lassiaa.github.io/ScriptWiz/",
     "lint": "eslint .",
     "preview": "vite preview"
   },
