@@ -97,7 +97,7 @@ function SchedulePage() {
           }
 
           // Calculate the number of columns the scene block should span
-          const columnSpan = endIndex - startIndex + 1;
+          const columnSpan = endIndex - startIndex;
 
           let bgColor;
           if (isDay && place === "INT") bgColor = "bg-dayInt";
