@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import "./App.css";
 
 import FrontPage from "./views/FrontPage";
@@ -9,15 +9,16 @@ import SchedulePage from "./views/SchedulePage";
 
 function App() {
   return (
-    <BrowserRouter basename={import.meta.env.DEV ? "/" : "/ScriptWiz/"}>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<FrontPage />} />
-        <Route path="/characters" element={<CharacterBrowsingPage />} />
-        <Route path="/overview" element={<Overview />} />
-        <Route path="/schedule" element={<SchedulePage />} />
-      </Routes>
-    </BrowserRouter>
+      <HashRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<FrontPage />} />
+          <Route path="/characters" element={<CharacterBrowsingPage />} />
+          <Route path="/overview" element={<Overview />} />
+          <Route path="/schedule" element={<SchedulePage />} />
+        </Routes>
+      </HashRouter>      
+      
   );
 }
 
