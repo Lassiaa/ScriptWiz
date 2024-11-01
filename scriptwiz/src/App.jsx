@@ -10,6 +10,7 @@ import SchedulePage from "./views/SchedulePage";
 function App() {
   return (
       <HashRouter>
+        <NavBar />
         <Routes>
           <Route path="/" element={<FrontPage />} />
           <Route path="/characters" element={<CharacterBrowsingPage />} />
