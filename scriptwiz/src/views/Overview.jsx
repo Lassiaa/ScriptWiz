@@ -8,11 +8,9 @@ const Overview = () => {
   const [scenes, setScenes] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
   // FOR DEV MOCK DATA TESTING ONLY
-  // const fileName = json.scenes;
+  const fileName = json.scenes;
   // USE THIS WHEN NOT TESTING
-  const { fileName } = useFileContext();
-  console.log(fileName);
-  console.log('test');
+  //const { fileName } = useFileContext();
 
   {
     /* FOR DEV TEMPLATE USE (using local files instead from db) */
@@ -50,6 +48,7 @@ const Overview = () => {
             return;
         }
         try {
+            //USE THIS WHEN TESTING
             const response = await fetchCharacters("500_DAYS_OF_SUMMER.pdf.json", "scenes");
 
             if (response.success) {
@@ -72,7 +71,7 @@ const Overview = () => {
 
   if (loading) {
     return <div>Loading...</div>; // Loading indicator
-    }
+  }
 
   return (
     <main className="mainStyling p-10">
@@ -87,9 +86,9 @@ const Overview = () => {
         <section className="grid">
           <p className="text-3xl pb-10 text-center">Scenes</p>
           {/* One Scene Content Block */}
-          <div className="scenesborder-gray-300 place-self-center md:w-[500px] gap-10">
+          <div className="scenesborder-gray-300 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {fileName === null
-            ? ('something went wrong sorry :(')
+            ? ('no uploaded file!')
             : (
             scenes.map((scene, index) => (
               <div key={index} className="">
