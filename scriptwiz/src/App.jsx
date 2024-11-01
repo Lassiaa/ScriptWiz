@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter basename={import.meta.env.DEV ? "/" : "/ScriptWiz/"}>
       <NavBar />
       <Routes>
-        <Route path="/ScriptWiz" element={<FrontPage />} />
+        <Route path="/" element={<FrontPage />} />
         <Route path="/characters" element={<CharacterBrowsingPage />} />
         <Route path="/overview" element={<Overview />} />
         <Route path="/schedule" element={<SchedulePage />} />
