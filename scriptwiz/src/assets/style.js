@@ -31,6 +31,11 @@ const style = {
   // Schedule Modal
   sModal:
     "fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50",
+  sModalContent: "bg-white p-5 rounded-md shadow-lg w-1/2",
+  sModalHeading: "flex w-full mb-3",
+  sModalH2: "text-2xl grow self-center",
+  sModalCloseButton: "text-gray-500 hover:text-gray-700 rounded-md",
+  sModalData: "mb-3",
 
   // Calendar widget
   modal:
