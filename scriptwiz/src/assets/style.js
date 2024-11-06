@@ -9,12 +9,24 @@ const style = {
   overviewTable: "flex flex-col items-stretch gap-5 w-40",
   overviewTableItem: "text-2xl border-2 rounded-md p-2",
 
-  scheduleFilters:
-    "flex flex-col items-stretch gap-2 w-40 bg-gray-300 rounded-md p-4 mr-4",
-  scheduleFiltersHeading: "flex justify-between items-center",
-  scheduleFiltersH2: "text-xl font-bold",
-  timeLine: "border-b-2 border-gray m-2",
-  testbox: "flex flex-col items-center gap-4 mt-10",
+  schedulePage: "p-10",
+  scheduleHeading: "flex mb-10 w-full",
+  scheduleH1: "grow",
+  scheduleDayButton: "bg-blue-300 w-20 justify-items-center",
+  scheduleNightButton: "bg-yellow-300 w-20 justify-items-center",
+
+  scheduleContent: "flex flex-row",
+  scheduleContainer: "border-2 rounded-md grow",
+  scheduleGrid:
+    "relative grid grid-cols-12 gap-2 text-center h-96 auto-rows-max",
+  scheduleHours: "absolute inset-0 grid grid-cols-12 gap-2 pointer-events-none",
+  scheduleHour: "border-x-2 time-block h-full",
+  scheduleSpace: "h-6 w-full col-span-full",
+  scheduleBlock: "rounded-md max-h-fit z-10",
+  scheduleProps: "cursor-pointer bg-blue-300 p-1 my-1 rounded-md",
+  schedulePropList: "bg-blue-300 p-2 my-1 rounded-md",
+  scheduleChars: "cursor-pointer bg-lime-300 p-1 my-1 rounded-md",
+  scheduleCharList: "bg-lime-300 p-2 my-1 rounded-md",
 
   modal:
     "fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-20",

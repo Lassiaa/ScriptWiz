@@ -18,7 +18,7 @@
             "Lurch"
           ],
           "props": ["sofa", "candelabra", "candles"],
-          "time_of_day": "EVENING",
+          "time_of_day": "MORNING",
           "filming_time_hours": 2
         },
         {
@@ -36,7 +36,7 @@
             "Lurch"
           ],
           "props": ["cauldron", "bubbling pitch"],
-          "time_of_day": "EVENING",
+          "time_of_day": "DAY",
           "filming_time_hours": 3
         },
         {
@@ -72,7 +72,7 @@
             "Lurch"
           ],
           "props": ["cauldron", "bubbling pitch"],
-          "time_of_day": "EVENING",
+          "time_of_day": "NIGHT",
           "filming_time_hours": 3
         }
       ]
@@ -145,7 +145,7 @@
           "place": "INT",
           "characters": ["Gomez", "Morticia"],
           "props": ["No props"],
-          "time_of_day": "MORNING",
+          "time_of_day": "NIGHT",
           "filming_time_hours": 1
         }
       ]

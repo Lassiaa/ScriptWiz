@@ -6,19 +6,20 @@ import NavBar from "./components/NavBar";
 import CharacterBrowsingPage from "./views/CharacterBrowsingPage";
 import Overview from "./views/Overview";
 import SchedulePage from "./views/SchedulePage";
+import SchedulePageDay from "./views/SchedulePageDay";
 
 function App() {
   return (
-      <HashRouter>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<FrontPage />} />
-          <Route path="/characters" element={<CharacterBrowsingPage />} />
-          <Route path="/overview" element={<Overview />} />
-          <Route path="/schedule" element={<SchedulePage />} />
-        </Routes>
-      </HashRouter>      
-      
+    <HashRouter>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<FrontPage />} />
+        <Route path="/characters" element={<CharacterBrowsingPage />} />
+        <Route path="/overview" element={<Overview />} />
+        <Route path="/schedule" element={<SchedulePageDay />} />
+        {/* <Route path="/scheduleDay" element={<SchedulePageDay />} /> */}
+      </Routes>
+    </HashRouter>
   );
 }
 

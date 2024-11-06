@@ -5,10 +5,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        dayInt: "#f4ca28",
-        nightInt: "#c8d3a2",
-        dayExt: "#86bc33",
-        nightExt: "#5bc5ae",
+        morningInt: "#FFACA9",
+        dayInt: "#E9E79E",
+        eveningInt: "#FEA940",
+        nightInt: "#00BAEE",
+        morningExt: "#F72E96",
+        dayExt: "#D4D201",
+        eveningExt: "#FF7C02",
+        nightExt: "#0E27C8",
       },
     },
   },
