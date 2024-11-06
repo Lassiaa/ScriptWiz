@@ -173,14 +173,12 @@ function SchedulePage() {
   }, [isDay, selectedDate]);
 
   return (
-    <main className={style.schedulePage}>
-      <article className={style.scheduleHeading}>
-        <h1 className={style.scheduleH1}>
-          Schedule, {selectedDate.toDateString()}
-        </h1>
+    <main className={style.sPage}>
+      <article className={style.sHeading}>
+        <h1 className={style.sH1}>Schedule, {selectedDate.toDateString()}</h1>
 
         {!isDay ? (
-          <button className={style.scheduleDayButton} onClick={setDay}>
+          <button className={style.sDayButton} onClick={setDay}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -195,7 +193,7 @@ function SchedulePage() {
             </svg>
           </button>
         ) : (
-          <button className={style.scheduleNightButton} onClick={setNight}>
+          <button className={style.sNightButton} onClick={setNight}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -208,17 +206,17 @@ function SchedulePage() {
         )}
       </article>
 
-      <article className={style.scheduleContent}>
-        <section className={style.scheduleContainer}>
-          <div className={style.scheduleGrid}>
-            <div className={style.scheduleHours}>
+      <article className={style.sContent}>
+        <section className={style.sContainer}>
+          <div className={style.sGrid}>
+            <div className={style.sHours}>
               {timeBlocks.map((hour) => (
-                <div key={hour.id} className={style.scheduleHour}>
+                <div key={hour.id} className={style.sHour}>
                   {hour.label}
                 </div>
               ))}
             </div>
-            <div className={style.scheduleSpace}></div>
+            <div className={style.sSpace}></div>
 
             {/* Loop through the grid data and render the scene blocks */}
             {Object.entries(gridData).flatMap(([startId, scenes]) =>
@@ -239,16 +237,16 @@ function SchedulePage() {
                       style={{
                         gridColumn: `${gridColumnStart} / span ${scene.columnSpan}`,
                       }}
-                      className={style.scheduleBlock}
+                      className={style.sBlock}
                     >
                       <div
                         onClick={() => setIsPropsVisible(!isPropsVisible)}
-                        className={style.scheduleProps}
+                        className={style.sProps}
                       >
                         Props
                       </div>
                       {isPropsVisible && (
-                        <div className={style.schedulePropList}>
+                        <div className={style.sPropList}>
                           {scene.props.map((prop, index) => (
                             <div key={index}>{prop}</div>
                           ))}
@@ -268,12 +266,12 @@ function SchedulePage() {
 
                       <div
                         onClick={() => setIsCharVisible(!isCharVisible)}
-                        className={style.scheduleChars}
+                        className={style.sChars}
                       >
                         Characters
                       </div>
                       {isCharVisible && (
-                        <div className={style.scheduleCharList}>
+                        <div className={style.sCharList}>
                           {scene.characters.map((character, index) => (
                             <div key={index}>{character}</div>
                           ))}

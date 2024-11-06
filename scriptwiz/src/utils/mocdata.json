@@ -60,7 +60,7 @@
         {
           "scene_number": "A10",
           "start_time": "02:00",
-          "end_time": "03:00",
+          "end_time": "04:00",
           "location": "Addams Mansion Front Steps",
           "place": "EXT",
           "characters": [
@@ -73,7 +73,7 @@
           ],
           "props": ["cauldron", "bubbling pitch"],
           "time_of_day": "NIGHT",
-          "filming_time_hours": 3
+          "filming_time_hours": 2
         }
       ]
     },
@@ -92,18 +92,6 @@
           "filming_time_hours": 1
         },
         {
-          "scene_number": "B2",
-          "start_time": "10:15",
-          "end_time": "11:00",
-          "location": "Hallway",
-          "place": "INT",
-          "characters": ["Gomez"],
-          "props": ["old-fashioned door latch"],
-          "time_of_day": "MORNING",
-          "filming_time_hours": 1
-        },
-
-        {
           "scene_number": "A2",
           "start_time": "08:15",
           "end_time": "09:00",
@@ -121,6 +109,18 @@
           "time_of_day": "MORNING",
           "filming_time_hours": 1
         },
+        {
+          "scene_number": "B2",
+          "start_time": "10:15",
+          "end_time": "11:00",
+          "location": "Hallway",
+          "place": "INT",
+          "characters": ["Gomez"],
+          "props": ["old-fashioned door latch"],
+          "time_of_day": "MORNING",
+          "filming_time_hours": 1
+        },
+
         {
           "scene_number": "3",
           "start_time": "11:15",

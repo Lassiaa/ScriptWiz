@@ -1,4 +1,4 @@
-import React from "react";
+import style from "../assets/style";
 
 const SceneInfoModal = ({ show, handleClose, sceneInfo }) => {
   if (!show || !sceneInfo) return null;
@@ -16,7 +16,7 @@ const SceneInfoModal = ({ show, handleClose, sceneInfo }) => {
   } = sceneInfo;
 
   return (
-    <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+    <div className={style.sModal}>
       <div className="bg-white p-5 rounded-md shadow-lg w-1/2">
         <div className="flex w-full mb-3">
           <h2 className="text-2xl grow self-center">
