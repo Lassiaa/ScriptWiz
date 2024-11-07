@@ -115,6 +115,7 @@ function NavBar() {
                 </span>
               </NavLink>
             </li>
+            {/*
             <li>
               <NavLink
                 to="/tags"
@@ -150,6 +151,7 @@ function NavBar() {
                 </span>
               </NavLink>
             </li>
+             */}
             <li>
               <NavLink
                 to="/"
