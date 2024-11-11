@@ -3,13 +3,18 @@ import Calendar from "react-calendar";
 import style from "../assets/style";
 import "../assets/calendar.css";
 
-function CalendarWidget({ onDateChange }) {
+function CalendarWidget({ onMonthChange }) {
   const [value, setValue] = useState(new Date());
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleDateChange = (date) => {
-    setValue(date);
-    onDateChange(date);
+  const handleMonthChange = ({ activeStartDate }) => {
+    const monthStartDate = new Date(
+      activeStartDate.getFullYear(),
+      activeStartDate.getMonth(),
+      1
+    );
+    setValue(monthStartDate);
+    onMonthChange(monthStartDate);
     setIsOpen(false);
   };
 
@@ -45,7 +50,11 @@ function CalendarWidget({ onDateChange }) {
             >
               Close
             </button>
-            <Calendar onChange={handleDateChange} value={value} />
+            <Calendar
+              onActiveStartDateChange={handleMonthChange}
+              value={value}
+              view="year"
+            />
           </div>
         </div>
       )}

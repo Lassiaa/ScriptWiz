@@ -16,8 +16,8 @@ function App() {
         <Route path="/" element={<FrontPage />} />
         <Route path="/characters" element={<CharacterBrowsingPage />} />
         <Route path="/overview" element={<Overview />} />
-        <Route path="/schedule" element={<SchedulePageDay />} />
-        {/* <Route path="/scheduleDay" element={<SchedulePageDay />} /> */}
+        <Route path="/schedule" element={<SchedulePage />} />
+        <Route path="/scheduleDay" element={<SchedulePageDay />} />
       </Routes>
     </HashRouter>
   );

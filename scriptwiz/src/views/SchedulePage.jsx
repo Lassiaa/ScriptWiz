@@ -7,7 +7,7 @@ import mocData from "../utils/mocdata.json";
 function SchedulePage() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [gridData, setGridData] = useState({});
-  const [sceneDates, setSceneDates] = useState({});
+  const [currentDate] = useState(new Date());
 
   const [showModal, setShowModal] = useState(false);
   const [selectedScene, setSelectedScene] = useState(null);
@@ -22,6 +22,7 @@ function SchedulePage() {
     setSelectedScene(null);
   };
 
+  // Set up the days of the week for the grid
   const days = [
     "Monday",
     "Tuesday",
@@ -32,11 +33,18 @@ function SchedulePage() {
     "Sunday",
   ];
 
+  // Populate the grid with scenes from the data
   const populateGrid = () => {
     const filmingDays = mocData.filming_days;
     const newGridData = {};
 
     filmingDays.forEach((day) => {
+      // Calculate the real date by adding (day_number - 1) to the selectedDate
+      const sceneDate = new Date(currentDate);
+      sceneDate.setDate(sceneDate.getDate() + day.day_number - 1);
+
+      const dayKey = sceneDate.toDateString();
+
       day.scenes.forEach((scene) => {
         const {
           scene_number,
@@ -50,9 +58,6 @@ function SchedulePage() {
           place,
         } = scene;
 
-        const sceneDate = new Date(day.date);
-        const dayKey = sceneDate.toDateString();
-
         if (!newGridData[dayKey]) {
           newGridData[dayKey] = [];
         }
@@ -65,7 +70,7 @@ function SchedulePage() {
         else if (time_of_day === "EVENING" && place === "INT")
           bgColor = "bg-eveningInt";
         else if (time_of_day === "EVENING" && place === "EXT")
-          bgColor = "bg-eveningExt  text-white";
+          bgColor = "bg-eveningExt text-white";
         else if (time_of_day === "DAY" && place === "INT")
           bgColor = "bg-dayInt";
         else if (time_of_day === "DAY" && place === "EXT")
@@ -77,13 +82,18 @@ function SchedulePage() {
 
         newGridData[dayKey].push({
           scene_number,
+          duration: filming_time_hours,
           start_time,
           end_time,
           filming_time_hours,
+          filming_date: sceneDate.toDateString(),
+          exact_start_time: start_time,
+          exact_end_time: end_time,
           characters,
           props,
           location,
           bgColor,
+          place,
         });
       });
     });
@@ -93,8 +103,10 @@ function SchedulePage() {
 
   useEffect(() => {
     populateGrid();
+    // console.log("Grid Data:", gridData);
   }, [selectedDate]);
 
+  // Get the days of the month for the calendar
   const getCalendarDays = () => {
     const startOfMonth = new Date(
       selectedDate.getFullYear(),
@@ -108,20 +120,31 @@ function SchedulePage() {
     );
     const calendarDays = [];
 
+    // Get the first day of the month and start on Monday
     let currentDay = new Date(startOfMonth);
-    currentDay.setDate(currentDay.getDate() - currentDay.getDay() + 1);
+    currentDay.setDate(currentDay.getDate() - ((currentDay.getDay() + 6) % 7));
 
+    // Get all the days of the month and add the days from the previous and next month to fill the grid
     while (currentDay <= endOfMonth || currentDay.getDay() !== 1) {
       calendarDays.push(new Date(currentDay));
       currentDay.setDate(currentDay.getDate() + 1);
     }
-    return calendarDays;
+    return calendarDays.map((day) => {
+      const isOutsideMonth = day.getMonth() !== selectedDate.getMonth();
+      return {
+        date: day,
+        isOutsideMonth,
+      };
+    });
   };
 
+  // Get the month name for the heading
+  const selectedMonth = selectedDate.toLocaleString("en-US", { month: "long" });
+
   return (
-    <main className={style.schedulePage}>
+    <main className={style.sPage}>
       <article className="flex mb-10 w-full">
-        <h1 className="">Schedule, {selectedDate.toDateString()}</h1>
+        <h1 className="">Schedule, {selectedMonth}</h1>
       </article>
 
       <article className="flex flex-row">
@@ -133,24 +156,23 @@ function SchedulePage() {
               </div>
             ))}
 
-            {getCalendarDays().map((day, index) => {
-              const dayKey = day.toDateString();
+            {getCalendarDays().map(({ date, isOutsideMonth }, index) => {
+              const dayKey = date.toDateString();
               return (
                 <div
                   key={index}
-                  className="border p-1 relative rounded-sm h-28"
+                  className={`border p-1 relative rounded-sm h-auto min-h-28 ${
+                    isOutsideMonth ? "text-gray-400" : ""
+                  }`}
                 >
-                  <div className="text-sm font-bold">{day.getDate()}</div>
+                  <div className="text-sm font-bold">{date.getDate()}</div>
                   {gridData[dayKey]?.map((scene, sceneIndex) => (
                     <div
                       key={sceneIndex}
-                      className={`rounded-md my-1 p-1 ${scene.bgColor}`}
+                      className={`rounded-md w-full my-1 p-1 ${scene.bgColor} cursor-pointer`}
                       onClick={() => openSceneModal(scene)}
                     >
                       <div>Scene: {scene.scene_number}</div>
-                      <div>
-                        {scene.start_time} - {scene.end_time}
-                      </div>
                     </div>
                   ))}
                 </div>
@@ -166,7 +188,7 @@ function SchedulePage() {
         sceneInfo={selectedScene}
       />
 
-      <CalendarWidget onDateChange={setSelectedDate} />
+      <CalendarWidget onMonthChange={(date) => setSelectedDate(date)} />
     </main>
   );
 }

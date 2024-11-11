@@ -79,6 +79,7 @@ function SchedulePage() {
           filming_time_hours,
           characters,
           props,
+          time_of_day,
           place,
         } = scene;
 
@@ -101,23 +102,22 @@ function SchedulePage() {
 
           // Set the background color based on the time of day and place
           let bgColor;
-          const timeOfDay = scene.time_of_day;
 
-          if (timeOfDay === "MORNING" && place === "INT")
+          if (time_of_day === "MORNING" && place === "INT")
             bgColor = "bg-morningInt";
-          else if (timeOfDay === "MORNING" && place === "EXT")
+          else if (time_of_day === "MORNING" && place === "EXT")
             bgColor = "bg-morningExt";
-          else if (timeOfDay === "EVENING" && place === "INT")
+          else if (time_of_day === "EVENING" && place === "INT")
             bgColor = "bg-eveningInt";
-          else if (timeOfDay === "EVENING" && place === "EXT")
+          else if (time_of_day === "EVENING" && place === "EXT")
             bgColor = "bg-eveningExt text-white";
-          else if (timeOfDay === "DAY" && place === "INT")
+          else if (time_of_day === "DAY" && place === "INT")
             bgColor = "bg-dayInt";
-          else if (timeOfDay === "DAY" && place === "EXT")
+          else if (time_of_day === "DAY" && place === "EXT")
             bgColor = "bg-dayExt";
-          else if (timeOfDay === "NIGHT" && place === "INT")
+          else if (time_of_day === "NIGHT" && place === "INT")
             bgColor = "bg-nightInt text-white";
-          else if (timeOfDay === "NIGHT" && place === "EXT")
+          else if (time_of_day === "NIGHT" && place === "EXT")
             bgColor = "bg-nightExt text-white";
 
           // Data for the scene block
