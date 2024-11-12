@@ -7,6 +7,7 @@ import CharacterBrowsingPage from "./views/CharacterBrowsingPage";
 import Overview from "./views/Overview";
 import SchedulePage from "./views/SchedulePage";
 import SchedulePageDay from "./views/SchedulePageDay";
+import CharacterDetailedPage from "./views/CharacterDetailedPage";
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
         <Route path="/characters" element={<CharacterBrowsingPage />} />
         <Route path="/overview" element={<Overview />} />
         <Route path="/schedule" element={<SchedulePage />} />
-        <Route path="/scheduleDay" element={<SchedulePageDay />} />
+        <Route path="/schedule-day" element={<SchedulePageDay />} />
+        <Route path="/character-details" element={<CharacterDetailedPage />} />
       </Routes>
     </HashRouter>
   );
