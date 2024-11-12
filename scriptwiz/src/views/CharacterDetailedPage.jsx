@@ -5,7 +5,7 @@ const CharacterDetailedPage = () => {
   const { character } = location.state || {};
 
   if (!character) {
-    return <p className="text-center text-2xl">Loading...</p>;
+    return <p className="text-center text-2xl py-20">Loading...</p>;
   }
 
   // console.log("Character:", character);

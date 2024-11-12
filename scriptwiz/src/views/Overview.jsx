@@ -92,7 +92,7 @@ const Overview = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>; // Loading indicator
+    return <p className="text-center text-2xl py-20">Loading...</p>; // Loading indicator
   }
 
   return (
