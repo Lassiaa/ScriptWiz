@@ -26,6 +26,19 @@ function SchedulePage() {
     setSelectedScene(null);
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        closeSceneModal();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   const setDay = () => setIsDay(true);
   const setNight = () => setIsDay(false);
 
