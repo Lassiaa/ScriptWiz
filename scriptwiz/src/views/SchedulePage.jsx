@@ -4,13 +4,18 @@ import CalendarWidget from "../components/CalendarWidget";
 import SceneInfoModal from "../components/SceneInfoModal";
 import mocData from "../utils/mocdata.json";
 
+import Weather from "../components/Weather";
+
 function SchedulePage() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [gridData, setGridData] = useState({});
   const [currentDate] = useState(new Date());
-
   const [showModal, setShowModal] = useState(false);
   const [selectedScene, setSelectedScene] = useState(null);
+
+  const { city, weatherData } = Weather();
+
+  const filmingDates = [];
 
   const openSceneModal = (scene) => {
     setSelectedScene(scene);
@@ -22,6 +27,7 @@ function SchedulePage() {
     setSelectedScene(null);
   };
 
+  // Close modal on escape key press to improve UX
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
@@ -58,6 +64,9 @@ function SchedulePage() {
 
       const dayKey = sceneDate.toDateString();
 
+      filmingDates.push(dayKey);
+
+      // Loop through each scene in the day
       day.scenes.forEach((scene) => {
         const {
           scene_number,
@@ -71,10 +80,12 @@ function SchedulePage() {
           place,
         } = scene;
 
+        // Check if the day key exists in the grid data
         if (!newGridData[dayKey]) {
           newGridData[dayKey] = [];
         }
 
+        // Set background color based on time of day and place
         let bgColor;
         if (time_of_day === "MORNING" && place === "INT")
           bgColor = "bg-morningInt";
@@ -93,6 +104,7 @@ function SchedulePage() {
         else if (time_of_day === "NIGHT" && place === "EXT")
           bgColor = "bg-nightExt text-white";
 
+        // Add scene data to the grid
         newGridData[dayKey].push({
           scene_number,
           duration: filming_time_hours,
@@ -116,7 +128,6 @@ function SchedulePage() {
 
   useEffect(() => {
     populateGrid();
-    // console.log("Grid Data:", gridData);
   }, [selectedDate]);
 
   // Get the days of the month for the calendar
@@ -142,6 +153,7 @@ function SchedulePage() {
       calendarDays.push(new Date(currentDay));
       currentDay.setDate(currentDay.getDate() + 1);
     }
+
     return calendarDays.map((day) => {
       const isOutsideMonth = day.getMonth() !== selectedDate.getMonth();
       return {
@@ -156,8 +168,9 @@ function SchedulePage() {
 
   return (
     <main className={style.sPage}>
-      <article className="flex mb-10 w-full">
+      <article className="flex flex-col mb-10 w-full">
         <h1 className="">Schedule, {selectedMonth}</h1>
+        <h2 className="text-gray-500 text-xl">Location: {city}</h2>
       </article>
 
       <article className="flex flex-row">
@@ -169,8 +182,10 @@ function SchedulePage() {
               </div>
             ))}
 
+            {/* Get calendar days for the grid */}
             {getCalendarDays().map(({ date, isOutsideMonth }, index) => {
               const dayKey = date.toDateString();
+
               return (
                 <div
                   key={index}
@@ -179,6 +194,15 @@ function SchedulePage() {
                   }`}
                 >
                   <div className="text-sm font-bold">{date.getDate()}</div>
+
+                  {/* Display weather data for the day */}
+                  {weatherData[dayKey] && (
+                    <div className="weather-info">
+                      <p>{weatherData[dayKey].weather?.description}</p>
+                      <p>{weatherData[dayKey].temp}°C</p>
+                    </div>
+                  )}
+
                   {gridData[dayKey]?.map((scene, sceneIndex) => (
                     <div
                       key={sceneIndex}
