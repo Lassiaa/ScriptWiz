@@ -14,6 +14,9 @@ export default {
         eveningExt: "#FF7C02",
         nightExt: "#0E27C8",
       },
+      height: {
+        timeline: "600px",
+      },
     },
   },
   plugins: [],

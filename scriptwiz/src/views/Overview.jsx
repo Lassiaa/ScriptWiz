@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 const Overview = () => {
   const [scenes, setScenes] = useState([]);
+  const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
   // FOR DEV MOCK DATA TESTING ONLY
   const fileName = json.scenes;
@@ -49,16 +50,28 @@ const Overview = () => {
       }
       try {
         //USE THIS WHEN TESTING
-        const response = await fetchCharacters(
+        const sceneResponse = await fetchCharacters(
           "500_DAYS_OF_SUMMER.pdf.json",
           "scenes"
         );
 
-        if (response.success) {
-          console.log("Fetched scenes:", response.data.scenes);
-          setScenes(response.data.scenes);
+        const charResponse = await fetchCharacters(
+          "500_DAYS_OF_SUMMER.pdf.json",
+          "characters"
+        );
+
+        if (sceneResponse.success && charResponse.success) {
+          console.log("Fetched scenes:", sceneResponse.data.scenes);
+          setScenes(sceneResponse.data.scenes);
+
+          console.log(
+            "Fetched characters:",
+            charResponse.data.parsedCharacters
+          );
+          setCharacters(charResponse.data.parsedCharacters);
         } else {
-          console.error("Error fetching characters:", response.message);
+          console.error("Error fetching scenes:", sceneResponse.message);
+          console.error("Error fetching characters:", charResponse.message);
         }
       } catch (error) {
         console.error("Error during fetching: ", error);
@@ -69,6 +82,78 @@ const Overview = () => {
 
     fetchData();
   }, [fileName]);
+
+  // Timeline content
+  const renderActs = (scenes, characters, scenesPerAct) => {
+    let currentSceneIndex = 0;
+
+    const acts = scenesPerAct.map((numScenes, actIndex) => {
+      const startSceneIndex = currentSceneIndex;
+      const endSceneIndex = startSceneIndex + numScenes;
+      currentSceneIndex = endSceneIndex;
+
+      return (
+        <div
+          key={actIndex}
+          className="grid"
+          style={{ gridTemplateRows: "auto 1fr" }}
+        >
+          {/* Act Header */}
+          <div className="h-12 content-center text-center font-bold border-y border-r sticky top-0 bg-white">
+            Act {actIndex + 1}
+          </div>
+          {/* Scenes in Act */}
+          <div className="grid grid-flow-col">
+            {scenes
+              .slice(startSceneIndex, endSceneIndex)
+              .map((scene, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-center rounded-md w-24"
+                >
+                  <p className="h-12 content-center text-center font-semibold border-r border-b w-full sticky top-12 bg-white">
+                    S{scene.scene_number}
+                  </p>
+                  {characters.map((character, charIndex) => {
+                    // Check if the character appears in the scene
+                    const isInScene = scene.elements.cast_members.some(
+                      (member) => member.name === character.name
+                    );
+                    return (
+                      <p
+                        key={charIndex}
+                        className="text-sm h-12 content-center text-center border-r border-b w-full"
+                      >
+                        {isInScene ? (
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth="2"
+                            stroke="currentColor"
+                            className="size-6 m-auto"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M6 18 18 6M6 6l12 12"
+                            />
+                          </svg>
+                        ) : (
+                          "-"
+                        )}
+                      </p>
+                    );
+                  })}
+                </div>
+              ))}
+          </div>
+        </div>
+      );
+    });
+
+    return acts;
+  };
 
   // Get the background color based on the scene type and time of day
   const getBg = (type, timeOfDay) => {
@@ -100,13 +185,46 @@ const Overview = () => {
       <article>
         <h1 className="pb-10">Overview</h1>
       </article>
+
+      {/* Timeline content */}
+      <article>
+        <h2 className="text-3xl pb-10 text-center">Timeline</h2>
+        <div className="relative h-timeline overflow-y-scroll border-2 border-gray-300 rounded-md">
+          <section className="rounded-md flex">
+            {/* Timeline headings */}
+            <div className="timeline-headings flex flex-col min-w-56 border-x sticky left-0 z-10 bg-white">
+              <p className="min-h-12 h-12 pl-2 content-center font-bold border-y sticky top-0 bg-white">
+                Act
+              </p>
+              <p className="min-h-12 h-12 pl-2 content-center font-bold border-b sticky top-12 bg-white">
+                Scene
+              </p>
+              {characters.map((character, index) => (
+                <p
+                  key={index}
+                  className="min-h-12 h-12 pl-2 content-center font-bold border-b"
+                >
+                  {character.name}
+                </p>
+              ))}
+            </div>
+
+            {/* Scrollable content */}
+            <div className="overscroll-x-auto flex">
+              {renderActs(scenes, characters, [3, 2, 3, 3, 4, 3, 2, 3, 4])}
+            </div>
+          </section>
+        </div>
+      </article>
+
+      {/* Overview content */}
       <article className="flex flex-col justify-center">
         <section>
-          <p className="text-3xl pb-10">Scene count: </p>
-          <p className="text-3xl pb-10">Filter by: </p>
+          {/* <p className="text-3xl pb-10">Scene count: </p>
+          <p className="text-3xl pb-10">Filter by: </p> */}
         </section>
         <section className="grid">
-          <p className="text-3xl pb-10 text-center">Scenes</p>
+          <h2 className="text-3xl p-10 text-center">Scenes</h2>
           {/* One Scene Content Block */}
           <div className="scenesborder-gray-300 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {fileName === null
@@ -178,71 +296,6 @@ const Overview = () => {
                         )}
                         <p className="font-bold">{scene.time}</p>
                       </div>
-
-                      {/* {scene.set.type[0] === "EXT" ? (
-                        <div className="bg-green-500 p-6 h-full w-20 flex flex-col items-center justify-center">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            className="size-6"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M9 4.5a.75.75 0 0 1 .721.544l.813 2.846a3.75 3.75 0 0 0 2.576 2.576l2.846.813a.75.75 0 0 1 0 1.442l-2.846.813a3.75 3.75 0 0 0-2.576 2.576l-.813 2.846a.75.75 0 0 1-1.442 0l-.813-2.846a3.75 3.75 0 0 0-2.576-2.576l-2.846-.813a.75.75 0 0 1 0-1.442l2.846-.813A3.75 3.75 0 0 0 7.466 7.89l.813-2.846A.75.75 0 0 1 9 4.5ZM18 1.5a.75.75 0 0 1 .728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 0 1 0 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 0 1-1.456 0l-.258-1.036a2.625 2.625 0 0 0-1.91-1.91l-1.036-.258a.75.75 0 0 1 0-1.456l1.036-.258a2.625 2.625 0 0 0 1.91-1.91l.258-1.036A.75.75 0 0 1 18 1.5ZM16.5 15a.75.75 0 0 1 .712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 0 1 0 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 0 1-1.422 0l-.395-1.183a1.5 1.5 0 0 0-.948-.948l-1.183-.395a.75.75 0 0 1 0-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0 1 16.5 15Z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                          <p className="font-bold">EXT</p>
-                        </div>
-                      ) : (
-                        <div className="bg-yellow-500 p-6 h-full w-20 flex flex-col items-center justify-center">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            className="size-6"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M9 4.5a.75.75 0 0 1 .721.544l.813 2.846a3.75 3.75 0 0 0 2.576 2.576l2.846.813a.75.75 0 0 1 0 1.442l-2.846.813a3.75 3.75 0 0 0-2.576 2.576l-.813 2.846a.75.75 0 0 1-1.442 0l-.813-2.846a3.75 3.75 0 0 0-2.576-2.576l-2.846-.813a.75.75 0 0 1 0-1.442l2.846-.813A3.75 3.75 0 0 0 7.466 7.89l.813-2.846A.75.75 0 0 1 9 4.5ZM18 1.5a.75.75 0 0 1 .728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 0 1 0 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 0 1-1.456 0l-.258-1.036a2.625 2.625 0 0 0-1.91-1.91l-1.036-.258a.75.75 0 0 1 0-1.456l1.036-.258a2.625 2.625 0 0 0 1.91-1.91l.258-1.036A.75.75 0 0 1 18 1.5ZM16.5 15a.75.75 0 0 1 .712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 0 1 0 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 0 1-1.422 0l-.395-1.183a1.5 1.5 0 0 0-.948-.948l-1.183-.395a.75.75 0 0 1 0-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0 1 16.5 15Z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                          <p className="font-bold">INT</p>
-                        </div>
-                      )}
-                      <div className="bg-black rounded-r-md">
-                        {scene.time === "DAY" ? (
-                          <div className="bg-yellow-300 p-6 h-full w-20 flex flex-col items-center justify-center">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              className="size-8"
-                            >
-                              <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
-                            </svg>
-                            <p className="font-bold">DAY</p>
-                          </div>
-                        ) : (
-                          <div className="bg-blue-300 p-6 h-full w-20 flex flex-col items-center justify-center">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              className="size-8"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <p className="font-bold">NIGHT</p>
-                          </div>
-                        )}
-                      </div> */}
                     </div>
                     <div className="p-4 flex flex-col gap-5">
                       <p className="normal-case">{scene.synopsis}</p>
