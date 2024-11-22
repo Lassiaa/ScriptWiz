@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 function NavBar() {
+
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <nav className="bg-white border-gray-200 dark:bg-gray-900 px-10">
+      <div className="flex flex-wrap items-center justify-between mx-auto p-4">
         <NavLink
           to="/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
@@ -25,13 +29,19 @@ function NavBar() {
             ScriptWiz
           </span>
         </NavLink>
-        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <button onClick={() => {setMobileMenuOpen(!mobileMenuOpen);}} data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+          <span className="sr-only">Open main menu</span>
+          <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
+          </svg>
+        </button>
+          <div className={`${mobileMenuOpen ? "hidden" : ""} w-full md:block md:w-auto`} id="navbar-default">
+            <ul className="font-medium flex flex-col md:p-0 mt-4 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               <NavLink
                 to="/overview"
                 className={({ isActive }) =>
-                  `flex py-2 px-3 rounded md:p-0 dark:text-white ${
+                  `flex py-5 rounded md:p-0 dark:text-white ${
                     isActive
                       ? "text-blue-700 bg-gray-100 md:bg-transparent md:text-blue-700 md:dark:text-blue-500 dark:bg-gray-700"
                       : "text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
@@ -59,7 +69,7 @@ function NavBar() {
               <NavLink
                 to="/schedule"
                 className={({ isActive }) =>
-                  `flex py-2 px-3 rounded md:p-0 dark:text-white ${
+                  `flex py-5 rounded md:p-0 dark:text-white ${
                     isActive
                       ? "text-blue-700 bg-gray-100 md:bg-transparent md:text-blue-700 md:dark:text-blue-500 dark:bg-gray-700"
                       : "text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
@@ -89,7 +99,7 @@ function NavBar() {
               <NavLink
                 to="/characters"
                 className={({ isActive }) =>
-                  `flex py-2 px-3 rounded md:p-0 dark:text-white ${
+                  `flex py-5 rounded md:p-0 dark:text-white ${
                     isActive
                       ? "text-blue-700 bg-gray-100 md:bg-transparent md:text-blue-700 md:dark:text-blue-500 dark:bg-gray-700"
                       : "text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
@@ -115,75 +125,9 @@ function NavBar() {
                 </span>
               </NavLink>
             </li>
-            {/*
-            <li>
-              <NavLink
-                to="/tags"
-                className={({ isActive }) =>
-                  `flex py-2 px-3 rounded md:p-0 dark:text-white ${
-                    isActive
-                      ? "text-blue-700 bg-gray-100 md:bg-transparent md:text-blue-700 md:dark:text-blue-500 dark:bg-gray-700"
-                      : "text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                  }`
-                }
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6 mr-2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 6h.008v.008H6V6Z"
-                  />
-                </svg>
-                <span className="self-center whitespace-nowrap dark:text-white">
-                  Tags
-                </span>
-              </NavLink>
-            </li>
-             */}
-            <li>
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  `flex py-2 px-3 rounded md:p-0 dark:text-white ${
-                    isActive
-                      ? "text-blue-700 bg-gray-100 md:bg-transparent md:text-blue-700 md:dark:text-blue-500 dark:bg-gray-700"
-                      : "text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                  }`
-                }
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6 mr-2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m6.75 12-3-3m0 0-3 3m3-3v6m-1.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
-                  />
-                </svg>
-                <span className="self-center whitespace-nowrap dark:text-white">
-                  New Script
-                </span>
-              </NavLink>
-            </li>
           </ul>
         </div>
+        
       </div>
     </nav>
   );
