@@ -1,11 +1,11 @@
 const style = {
-  frontPageBody: "bg-gray-200 h-screen flex flex-col items-center",
-  frontPageHeading: "text-4xl font-bold text-center my-10",
-  card: "bg-white rounded px-12 py-10 m-6 w-96 flex flex-col items-center",
+  frontPageBody: "w-full flex flex-col justify-center items-center",
+  frontPageHeading: "text-3xl font-bold text-center",
+  card: "rounded border-primary border px-12 py-10 m-6 w-96 flex flex-col items-center",
   fileIcon: "w-24 h-24 mx-auto",
   fileInfo: "my-6",
   fileUpload:
-    "bg-blue-500 text-white p-2 px-4 rounded cursor-pointer hover:bg-blue-600",
+    "bg-blackbg border border-primary text-primary p-2 px-8 rounded-full cursor-pointer font-bold hover:bg-secondary hover:text-white hover:border-secondary duration-300 uppercase",
   overviewTable: "flex flex-col items-stretch gap-5 w-40",
   overviewTableItem: "text-2xl border-2 rounded-md p-2",
 
@@ -30,19 +30,19 @@ const style = {
 
   // Schedule Modal
   sModal:
-    "fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50",
+    "fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50 text-black",
   sModalContent: "bg-white p-5 rounded-md shadow-lg w-1/2",
-  sModalHeading: "flex w-full mb-3",
+  sModalHeading: "flex w-full mb-3 text-black",
   sModalH2: "text-2xl grow self-center",
-  sModalCloseButton: "text-gray-500 hover:text-gray-700 rounded-md",
+  sModalCloseButton: "uppercase text-white bg-primary hover:bg-secondary duration-300 rounded-full",
   sModalData: "mb-3",
 
   // Calendar widget
   modal:
-    "fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-20",
+    "fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-20 text-black",
   modalContent: "bg-white rounded-lg p-4 w-96 h-96 overflow-y-auto",
   calendarModalButton:
-    "bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 flex items-center gap-2 fixed bottom-6 left-6",
+    "bg-primary uppercase text-white py-2 px-8 rounded-full hover:bg-secondary flex items-center gap-2 fixed bottom-6 left-6 duration-300",
   closeButton: "absolute top-3 right-3 text-gray-500 hover:text-gray-700",
 };
 

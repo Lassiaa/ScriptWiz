@@ -12,9 +12,8 @@ function CharacterBrowsingPage() {
   // Function to fetch characters from Firestore using the uploaded file
   const handleFetchCharacters = async () => {
     if (!fileName) {
-      alert("Please upload a file to view characters.");
       console.error("Filename is empty. Cannot fetch characters.");
-      return;
+      navigate("/");
     }
 
     const response = await fetchCharacters(fileName, "characters");

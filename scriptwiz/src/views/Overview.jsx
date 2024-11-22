@@ -99,7 +99,7 @@ const Overview = () => {
           style={{ gridTemplateRows: "auto 1fr" }}
         >
           {/* Act Header */}
-          <div className="h-12 content-center text-center font-bold border-y border-r sticky top-0 bg-white">
+          <div className="h-12 content-center text-center font-bold border-y border-r sticky top-0 bg-white text-black">
             Act {actIndex + 1}
           </div>
           {/* Scenes in Act */}
@@ -111,7 +111,7 @@ const Overview = () => {
                   key={index}
                   className="flex flex-col items-center rounded-md w-24"
                 >
-                  <p className="h-12 content-center text-center font-semibold border-r border-b w-full sticky top-12 bg-white">
+                  <p className="h-12 content-center text-center font-semibold border-r border-b w-full sticky top-12 bg-white text-black">
                     S{scene.scene_number}
                   </p>
                   {characters.map((character, charIndex) => {
@@ -159,16 +159,16 @@ const Overview = () => {
   const getBg = (type, timeOfDay) => {
     const colors = {
       EXT: {
-        MORNING: "bg-morningExt",
-        DAY: "bg-dayExt",
-        EVENING: "bg-eveningExt text-white",
-        NIGHT: "bg-nightExt text-white",
+        MORNING: "bg-morningExt text-black",
+        DAY: "bg-dayExt text-black",
+        EVENING: "bg-eveningExt text-black",
+        NIGHT: "bg-nightExt text-black",
       },
       INT: {
-        MORNING: "bg-morningInt",
-        DAY: "bg-dayInt",
-        EVENING: "bg-eveningInt",
-        NIGHT: "bg-nightInt text-white",
+        MORNING: "bg-morningInt text-black",
+        DAY: "bg-dayInt text-black",
+        EVENING: "bg-eveningInt text-black",
+        NIGHT: "bg-nightInt text-black",
       },
     };
 
@@ -183,16 +183,16 @@ const Overview = () => {
   return (
     <main className="mainStyling p-10">
       <article>
-        <h1 className="pb-10">Overview</h1>
+        <h1 className="pb-10 text-3xl font-bold">Overview</h1>
       </article>
 
       {/* Timeline content */}
       <article>
-        <h2 className="text-3xl pb-10 text-center">Timeline</h2>
+        <h2 className="text-2xl pb-10">Timeline</h2>
         <div className="relative h-timeline overflow-y-scroll border-2 border-gray-300 rounded-md">
           <section className="rounded-md flex">
             {/* Timeline headings */}
-            <div className="timeline-headings flex flex-col min-w-56 border-x sticky left-0 z-10 bg-white">
+            <div className="timeline-headings flex flex-col min-w-56 border-x sticky left-0 z-10 bg-white text-black">
               <p className="min-h-12 h-12 pl-2 content-center font-bold border-y sticky top-0 bg-white">
                 Act
               </p>
@@ -224,7 +224,7 @@ const Overview = () => {
           <p className="text-3xl pb-10">Filter by: </p> */}
         </section>
         <section className="grid">
-          <h2 className="text-3xl p-10 text-center">Scenes</h2>
+          <h2 className="text-2xl py-10">Scenes</h2>
           {/* One Scene Content Block */}
           <div className="scenesborder-gray-300 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {fileName === null

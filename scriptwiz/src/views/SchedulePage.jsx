@@ -169,8 +169,8 @@ function SchedulePage() {
   return (
     <main className={style.sPage}>
       <article className="flex flex-col mb-10 w-full">
-        <h1 className="">Schedule, {selectedMonth}</h1>
-        <h2 className="text-gray-500 text-xl">Location: {city}</h2>
+        <h1 className="text-3xl font-bold">Schedule, {selectedMonth}</h1>
+        <h2 className="text-gray-400 text-xl">Location: {city}</h2>
       </article>
 
       <article className="flex flex-row">

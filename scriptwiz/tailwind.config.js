@@ -5,6 +5,9 @@ export default {
   theme: {
     extend: {
       colors: {
+        primary: "#2596EB",
+        secondary: "#8D89FA",
+        blackbg: "#1E1E25",
         morningInt: "#FFACA9",
         dayInt: "#E9E79E",
         eveningInt: "#FEA940",
