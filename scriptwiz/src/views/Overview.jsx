@@ -162,7 +162,7 @@ const Overview = () => {
         MORNING: "bg-morningExt text-black",
         DAY: "bg-dayExt text-black",
         EVENING: "bg-eveningExt text-black",
-        NIGHT: "bg-nightExt text-black",
+        NIGHT: "bg-nightExt text-white",
       },
       INT: {
         MORNING: "bg-morningInt text-black",
@@ -230,12 +230,17 @@ const Overview = () => {
             {fileName === null
               ? "no uploaded file!"
               : scenes.map((scene, index) => (
-                  <div key={index} className="">
+                  <div key={index} className="bg-white text-blackbg rounded-lg">
                     <div className="flex justify-end items-stretch h-24">
-                      <div className="border-y border-gray-300  text-2xl text-center grow flex flex-col items-center justify-center">
+                      <div
+                      className={`${getBg(
+                          scene.set.type[0],
+                          scene.time
+                        )} 
+                      text-2xl grow flex flex-col justify-center pl-4`}>
                         <p className="inline-block align-middle">
-                          SCENE #{" "}
-                          <span className="font-bold text-3xl">
+                          #{" "}
+                          <span className="font-bold text-2xl">
                             {scene.scene_number}
                           </span>
                         </p>

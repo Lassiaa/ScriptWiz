@@ -1,7 +1,7 @@
 const style = {
   frontPageBody: "w-full flex flex-col justify-center items-center",
-  frontPageHeading: "text-3xl font-bold text-center",
-  card: "rounded border-primary border px-12 py-10 m-6 w-96 flex flex-col items-center",
+  frontPageHeading: "text-3xl font-bold text-center shadow-xl",
+  card: "shadow-2xl rounded border-primary border px-12 py-10 m-6 w-96 flex flex-col items-center bg-blackbg",
   fileIcon: "w-24 h-24 mx-auto",
   fileInfo: "my-6",
   fileUpload:
@@ -42,8 +42,8 @@ const style = {
     "fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-20 text-black",
   modalContent: "bg-white rounded-lg p-4 w-96 h-96 overflow-y-auto",
   calendarModalButton:
-    "bg-primary uppercase text-white py-2 px-8 rounded-full hover:bg-secondary flex items-center gap-2 fixed bottom-6 left-6 duration-300",
-  closeButton: "absolute top-3 right-3 text-gray-500 hover:text-gray-700",
+    "bg-primary uppercase text-white font-bold py-2 px-8 rounded-full hover:bg-secondary flex items-center gap-2 fixed bottom-6 left-6 duration-300",
+  closeButton: "absolute top-3 right-3 text-white rounded-full py-2 px-8 bg-primary uppercase hover:bg-secondary duration-300 font-bold",
 };
 
 export default style;
