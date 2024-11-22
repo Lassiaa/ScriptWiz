@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useFileContext } from "../contexts/fileContext";
 
 function NavBar() {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { filename } = useFileContext();
 
 
   return (
@@ -11,7 +13,7 @@ function NavBar() {
       <div className="mx-auto p-4 flex flex-wrap w-full justify-between items-center">
         <NavLink
           to="/"
-          className="flex items-center space-x-3 rtl:space-x-reverse text-primary hover:text-secondary duration-300"
+          className="flex items-center space-x-3 rtl:space-x-reverse text-primary hover:text-secondary duration-300 font-primary"
         >
           <svg
             width="30"

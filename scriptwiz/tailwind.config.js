@@ -20,6 +20,12 @@ export default {
       height: {
         timeline: "600px",
       },
+      fontFamily: {
+        primary: ["Plaster"],
+      },
+      backgroundImage: {
+        topography: "",
+      },
     },
   },
   plugins: [],
