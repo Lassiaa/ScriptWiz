@@ -3,12 +3,14 @@ import style from "../assets/style";
 import { setScript } from "../db/firestoreService";
 import { useFileContext } from "../contexts/fileContext";
 import { makeApiRequest, roles } from "../utils/openai";
+import { useNavigate } from "react-router-dom";
 
 function FrontPage() {
   const [isFile, setFile] = useState(false);
   const [scriptContent, setScriptContent] = useState(null);
   const [aiResponse, setAiResponse] = useState("");
   const { setFileName } = useFileContext();
+  const navigate = useNavigate();
 
   // Check if there already is a script in local storage
   useEffect(() => {
@@ -62,6 +64,9 @@ function FrontPage() {
 
         await setScript(file.name, "characters", { parsedCharacters });
         await setScript(file.name, "scenes", { scenes });
+
+        //go to overview page after upload
+        navigate("/overview");
       } catch (error) {
         console.error("Error reading file:", error);
       }
@@ -93,59 +98,58 @@ function FrontPage() {
   };
 
   return (
-    <div className={style.frontPageBody}>
-      <h1 className={style.frontPageHeading}>ScriptWiz, build test</h1>
-      <p>Please upload your .json file to start</p>
-      <div className={style.card}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          className={style.fileIcon}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m6.75 12-3-3m0 0-3 3m3-3v6m-1.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
+    <main className="h-[90vh] flex">
+      <div className={style.frontPageBody}>
+        <h1 className={style.frontPageHeading}>Welcome!</h1>
+        <p className="pt-3">Please upload your .json file to get started.</p>
+        <div className={style.card}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className={style.fileIcon}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m6.75 12-3-3m0 0-3 3m3-3v6m-1.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
+            />
+          </svg>
+          {!isFile ? (
+            <p className={style.fileInfo}>No file uploaded</p>
+          ) : (
+            <p className={style.fileInfo}>File uploaded successfully!</p>
+          )}
+          <label htmlFor="file-upload" className={style.fileUpload}>
+            Upload
+          </label>
+          <input
+            type="file"
+            accept=".json"
+            onChange={handleFileUpload}
+            className="hidden"
+            id="file-upload"
           />
-        </svg>
-        {!isFile ? (
-          <p className={style.fileInfo}>No file uploaded.</p>
-        ) : (
-          <p className={style.fileInfo}>File uploaded successfully!</p>
-        )}
-        <label htmlFor="file-upload" className={style.fileUpload}>
-          Upload
-        </label>
-        <input
-          type="file"
-          accept=".json"
-          onChange={handleFileUpload}
-          className="hidden"
-          id="file-upload"
-        />
-      </div>
-      <button
-        className={`p-2 px-4 rounded text-white 
-          ${
-            isFile
-              ? "bg-green-500 hover:bg-green-600"
-              : "bg-gray-300 cursor-not-allowed"
-          }`}
-        disabled={!isFile}
-        onClick={handleGenerateClick}
-      >
-        Generate timeline overview
-      </button>
-      {aiResponse && (
-        <div className={style.aiResponse}>
-          <h2>AI Response:</h2>
-          <p>{aiResponse}</p>
         </div>
-      )}
-    </div>
+        {isFile
+        ? (<button
+        onClick={()=>{navigate("/overview")}}
+          className={`p-2 w-96 rounded-full duration-300 bg-primary hover:bg-secondary`}
+        >
+          GENERATE OVERVIEW
+        </button>)
+        : (null)}
+        
+        {aiResponse && (
+          <div className={style.aiResponse}>
+            <h2>AI Response:</h2>
+            <p>{aiResponse}</p>
+          </div>
+        )}
+      </div>
+    </main>
   );
 }
 
