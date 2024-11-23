@@ -5,6 +5,7 @@ import SceneInfoModal from "../components/SceneInfoModal";
 import mocData from "../utils/mocdata.json";
 
 import Weather from "../components/Weather";
+import { useFileContext } from "../contexts/fileContext";
 
 function SchedulePage() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -14,6 +15,8 @@ function SchedulePage() {
   const [selectedScene, setSelectedScene] = useState(null);
 
   const { city, weatherData } = Weather();
+
+  const { fileName } = useFileContext();
 
   const filmingDates = [];
 
@@ -167,13 +170,13 @@ function SchedulePage() {
   const selectedMonth = selectedDate.toLocaleString("en-US", { month: "long" });
 
   return (
-    <main className={style.sPage}>
-      <article className="flex flex-col mb-10 w-full">
-        <h1 className="text-3xl font-bold">Schedule, {selectedMonth}</h1>
-        <h2 className="text-gray-400 text-xl">Location: {city}</h2>
+    <main className="">
+      <article className="bg-primary p-10">
+        <h1 className="text-3xl font-bold uppercase">Schedule, {selectedMonth}</h1>
+        <p className="">{fileName} | Location: {city}</p>
       </article>
 
-      <article className="flex flex-row">
+      <article className={`flex flex-row ${style.sPage}`}>
         <section className="border-2 rounded-md grow">
           <div className="grid grid-cols-7 gap-2 text-center h-full p-2 auto-rows-max">
             {days.map((day, index) => (

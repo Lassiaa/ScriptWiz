@@ -3,15 +3,18 @@ import json from "../assets/500_DAYS_OF_SUMMER.pdf";
 import { fetchCharacters } from "../db/firestoreService";
 import { useFileContext } from "../contexts/fileContext";
 import { useEffect, useState } from "react";
+import style from "../assets/style";
 
 const Overview = () => {
   const [scenes, setScenes] = useState([]);
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
   // FOR DEV MOCK DATA TESTING ONLY
-  const fileName = json.scenes;
+  // const fileName = json.scenes;
   // USE THIS WHEN NOT TESTING
-  //const { fileName } = useFileContext();
+  const { fileName } = useFileContext();
+
+  console.log({fileName});
 
   {
     /* FOR DEV TEMPLATE USE (using local files instead from db) */
@@ -181,13 +184,14 @@ const Overview = () => {
   }
 
   return (
-    <main className="mainStyling p-10">
-      <article>
-        <h1 className="pb-10 text-3xl font-bold">Overview</h1>
+    <main>
+      <article className="bg-primary p-10">
+        <h1 className="text-3xl font-bold uppercase">Overview</h1>
+        <p className="">{fileName}</p>
       </article>
 
       {/* Timeline content */}
-      <article>
+      <article className="px-10 py-10">
         <h2 className="text-2xl pb-10">Timeline</h2>
         <div className="relative h-timeline overflow-y-scroll border-2 border-gray-300 rounded-md">
           <section className="rounded-md flex">
@@ -218,7 +222,7 @@ const Overview = () => {
       </article>
 
       {/* Overview content */}
-      <article className="flex flex-col justify-center">
+      <article className="flex flex-col justify-center px-10">
         <section>
           {/* <p className="text-3xl pb-10">Scene count: </p>
           <p className="text-3xl pb-10">Filter by: </p> */}

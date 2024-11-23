@@ -1,7 +1,7 @@
 const style = {
   frontPageBody: "w-full flex flex-col justify-center items-center",
-  frontPageHeading: "text-3xl font-bold text-center shadow-xl",
-  card: "shadow-2xl rounded border-primary border px-12 py-10 m-6 w-96 flex flex-col items-center bg-blackbg",
+  frontPageHeading: "text-3xl font-bold text-center drop-shadow-xl uppercase",
+  card: "drop-shadow-xl rounded border-primary border px-12 py-10 m-6 w-96 flex flex-col items-center bg-blackbg",
   fileIcon: "w-24 h-24 mx-auto",
   fileInfo: "my-6",
   fileUpload:

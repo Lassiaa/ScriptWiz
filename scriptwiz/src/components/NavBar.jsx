@@ -4,16 +4,16 @@ import { useFileContext } from "../contexts/fileContext";
 
 function NavBar() {
 
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(true);
   const { filename } = useFileContext();
 
 
   return (
-    <nav className="px-6 md:h-[10vh] flex">
-      <div className="mx-auto p-4 flex flex-wrap w-full justify-between items-center">
+    <nav className="px-6 md:h-[10vh] md:max-h-[100px] flex">
+      <div className="mx-auto flex flex-wrap w-full justify-between items-center">
         <NavLink
           to="/"
-          className="flex items-center space-x-3 rtl:space-x-reverse text-primary hover:text-secondary duration-300 font-primary"
+          className="flex items-center p-4 space-x-3 rtl:space-x-reverse text-primary hover:text-secondary duration-300 font-primary"
         >
           <svg
             width="30"
@@ -26,7 +26,7 @@ function NavBar() {
               d="M17.5003 7.50015L18.7504 5.0001L21.2504 3.75007L18.7504 2.50005L17.5003 0L16.2503 2.50005L13.7503 3.75007L16.2503 5.0001L17.5003 7.50015ZM6.25012 12.5002L8.33298 8.33376L12.5002 6.25012L8.33298 4.16649L6.25012 0L4.16727 4.16649L0 6.25012L4.16727 8.33376L6.25012 12.5002ZM33.7507 22.5004L31.6678 26.6669L27.5005 28.7506L31.6678 30.8342L33.7507 35.0007L35.8335 30.8342L40.0008 28.7506L35.8335 26.6669L33.7507 22.5004ZM39.268 7.36186L32.6389 0.732827C32.1514 0.243755 31.5116 0 30.8717 0C30.2318 0 29.592 0.243755 29.1037 0.732827L0.732827 29.1037C-0.243755 30.0803 -0.243755 31.6631 0.732827 32.6389L7.36186 39.268C7.85015 39.7562 8.49001 40 9.12908 40C9.76894 40 10.4088 39.7562 10.8971 39.268L39.268 10.8963C40.2445 9.92129 40.2445 8.33766 39.268 7.36186ZM28.0826 15.8956L24.1052 11.9182L30.8709 5.15244L34.8483 9.12987L28.0826 15.8956Z"
             />
           </svg>
-          <span className="self-center text-3xl font-bold whitespace-nowrap uppercase">
+          <span className="self-center text-3xl font-bold whitespace-nowrap">
             ScriptWiz
           </span>
         </NavLink>
@@ -36,16 +36,16 @@ function NavBar() {
               <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
           </svg>
         </button>
-          <div className={`${mobileMenuOpen ? "hidden" : ""} w-full md:block md:w-auto`} id="navbar-default">
-            <ul className="font-medium flex flex-col md:p-0 mt-4 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0">
-            <li>
+          <div className={`${mobileMenuOpen ? "hidden" : ""} w-full md:block md:w-auto md:h-full`} id="navbar-default">
+            <ul className="md:h-full font-medium flex flex-col md:p-0 mt-4 md:flex-row rtl:space-x-reverse md:mt-0">
+            <li className="md:h-full">
               <NavLink
                 to="/overview"
                 className={({ isActive }) =>
-                  `flex py-5 rounded md:p-0 duration-300 ${
+                  `flex py-5 md:px-5 md:items-center md:h-full hover:text-white bg-gradient-to-r from-secondary via-blackbg to-blackbg from-50% via-0% bg-[length:201%_110%] bg-[position:right_center] hover:bg-[position:left_center] transition-all duration-500 ease-out ${
                     isActive
                       ? "md:bg-transparent text-secondary font-bold"
-                      : "md:border-0 md:hover:text-secondary"
+                      : ""
                   }`
                 }
               >
@@ -66,14 +66,14 @@ function NavBar() {
                 </span>
               </NavLink>
             </li>
-            <li>
+            <li className="md:h-full">
               <NavLink
                 to="/schedule"
                 className={({ isActive }) =>
-                  `flex py-5 rounded md:p-0 duration-300 ${
+                  `flex py-5 md:px-5 md:items-center md:h-full hover:text-white bg-gradient-to-r from-secondary via-blackbg to-blackbg from-50% via-0% bg-[length:201%_110%] bg-[position:right_center] hover:bg-[position:left_center] transition-all duration-500 ease-out ${
                     isActive
                       ? "md:bg-transparent text-secondary font-bold"
-                      : "md:border-0 md:hover:text-secondary"
+                      : ""
                   }`
                 }
               >
@@ -96,14 +96,14 @@ function NavBar() {
                 </span>
               </NavLink>
             </li>
-            <li>
+            <li className="md:h-full">
               <NavLink
                 to="/characters"
                 className={({ isActive }) =>
-                  `flex py-5 rounded md:p-0 duration-300 ${
+                  `flex py-5 md:px-5 md:items-center md:h-full hover:text-white bg-gradient-to-r from-secondary via-blackbg to-blackbg from-50% via-0% bg-[length:201%_110%] bg-[position:right_center] hover:bg-[position:left_center] transition-all duration-500 ease-out ${
                     isActive
-                      ? "md:bg-transparent text-secondary font-bold"
-                      : "md:border-0 md:hover:text-secondary"
+                      ? " text-secondary font-bold"
+                      : ""
                   }`
                 }
               >

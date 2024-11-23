@@ -26,6 +26,15 @@ export default {
       backgroundImage: {
         topography: "",
       },
+      keyframes: {
+        shimmer: {
+          '0%': { backgroundPosition: '100% 0' },
+          '100%': { backgroundPosition: '0 0' },
+        },
+      },
+      animation: {
+        shimmer: 'shimmer 0.5s linear forwards',
+      },
     },
   },
   plugins: [],

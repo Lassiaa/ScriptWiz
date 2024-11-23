@@ -46,10 +46,13 @@ function CharacterBrowsingPage() {
   );
 
   return (
-    <main className="flex flex-col gap-4 p-10">
-      <h1 className="pb-10">Characters</h1>
+    <main className="">
+      <article className="bg-primary p-10">
+        <h1 className="text-3xl font-bold uppercase">Characters</h1>
+        <p className="">{fileName}</p>
+      </article>
 
-      <article className="flex flex-col-reverse lg:flex-row gap-4">
+      <article className="p-10 flex flex-col-reverse lg:flex-row gap-4">
         {/* Characters grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 flex-grow">
           {filteredCharacters.map((character, index) => (
