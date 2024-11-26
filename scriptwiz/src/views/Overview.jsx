@@ -8,6 +8,7 @@ import style from "../assets/style";
 const Overview = () => {
   const [scenes, setScenes] = useState([]);
   const [characters, setCharacters] = useState([]);
+  const [filteredScenes, setFilteredScenes] = useState();
   const [loading, setLoading] = useState(true); // Loading state
   // FOR DEV MOCK DATA TESTING ONLY
   // const fileName = json.scenes;
@@ -43,7 +44,7 @@ const Overview = () => {
     return list;
   };
   */
-
+  
   // Fetch characters from Firestore once character browsing page is mounted
   useEffect(() => {
     const fetchData = async () => {
@@ -65,7 +66,12 @@ const Overview = () => {
 
         if (sceneResponse.success && charResponse.success) {
           console.log("Fetched scenes:", sceneResponse.data.scenes);
-          setScenes(sceneResponse.data.scenes);
+          //sort scenes by scene number
+          const sortedScenes = sceneResponse.data.scenes.sort(
+            (a, b) => a.scene_number - b.scene_number
+          );
+          setScenes(sortedScenes);
+          setFilteredScenes(sortedScenes);
 
           console.log(
             "Fetched characters:",
@@ -82,9 +88,8 @@ const Overview = () => {
         setLoading(false);
       }
     };
-
     fetchData();
-  }, [fileName]);
+  }, []);
 
   // Timeline content
   const renderActs = (scenes, characters, scenesPerAct) => {
@@ -178,10 +183,36 @@ const Overview = () => {
     // Return the appropriate color class
     return colors[type]?.[timeOfDay] || "bg-gray-500"; // Default gray if no match
   };
-
+ 
   if (loading) {
     return <p className="text-center text-2xl py-20">Loading...</p>; // Loading indicator
   }
+
+  // Handle scenes filtering
+  const handleFilterScenes = (category, selected)=>{
+    console.log(category, selected);
+
+    switch(category){
+      case 1:
+        setFilteredScenes(selected === "" ? scenes : scenes.filter((scene) => scene.time.includes(selected)));
+        break;
+      case 2:
+        setFilteredScenes(selected === "" ? scenes : scenes.filter((scenes)=>scenes.set.type.includes(selected)));
+        break;
+      case 3:
+        setFilteredScenes(selected === ""
+          ? scenes
+          : scenes.filter((scene)=>
+            scene.elements.cast_members.some((member) => member.name.includes(selected))
+          )
+        );
+        break;
+      default:
+        break;
+    }
+    console.log("handle ", scenes);
+  }
+
 
   return (
     <main>
@@ -222,18 +253,36 @@ const Overview = () => {
       </article>
 
       {/* Overview content */}
-      <article className="flex flex-col justify-center px-10">
+      <article className="flex flex-col justify-center px-10 pb-28">
         <section>
-          {/* <p className="text-3xl pb-10">Scene count: </p>
-          <p className="text-3xl pb-10">Filter by: </p> */}
+          {/* <p className="text-3xl pb-10">Scene count: </p>*/}
+          <p className="text-3xl pb-10">Filter by: </p>
+          <div>
+            <p>Time:</p>
+            <button onClick={() => handleFilterScenes(1, "")} className="uppercase p-2 w-24 font-bold rounded-full duration-300 border-bg-primary border hover:bg-secondary hover:border-black">All</button>
+            <button onClick={() => handleFilterScenes(1,"MORNING")} className="uppercase p-2 w-24 font-bold rounded-full duration-300 bg-primary hover:bg-secondary">Morning</button>
+            <button onClick={() => handleFilterScenes(1,"DAY")} className="uppercase p-2 w-24 font-bold rounded-full duration-300 bg-primary hover:bg-secondary">Day</button>
+            <button onClick={() => handleFilterScenes(1,"EVENING")} className="uppercase p-2 w-24 font-bold rounded-full duration-300 bg-primary hover:bg-secondary">Evening</button>
+            <button onClick={() => handleFilterScenes(1,"NIGHT")} className="uppercase p-2 w-24 font-bold rounded-full duration-300 bg-primary hover:bg-secondary">Night</button>
+          </div>
+          <div>
+            <p>Set type:</p>
+            <button onClick={() => handleFilterScenes(2, "")} className="uppercase p-2 w-24 font-bold rounded-full duration-300 border-bg-primary border hover:bg-secondary hover:border-black">All</button>
+            <button onClick={() => handleFilterScenes(2,"INT")} className="uppercase p-2 w-24 font-bold rounded-full duration-300 bg-primary hover:bg-secondary">Interior</button>
+            <button onClick={() => handleFilterScenes(2,"EXT")} className="uppercase p-2 w-24 font-bold rounded-full duration-300 bg-primary hover:bg-secondary">Exterior</button>
+          </div>
+          <div>
+            <p>Character:</p>
+            <button onClick={() => handleFilterScenes(3, "")} className="uppercase p-2 w-24 font-bold rounded-full duration-300 border-bg-primary border hover:bg-secondary hover:border-black">All</button>
+            <button onClick={() => handleFilterScenes(3,"Tom")} className="uppercase p-2 w-24 font-bold rounded-full duration-300 bg-primary hover:bg-secondary">Tom</button>
+            <button onClick={() => handleFilterScenes(3,"Summer")} className="uppercase p-2 w-24 font-bold rounded-full duration-300 bg-primary hover:bg-secondary">Summer</button>
+          </div>
         </section>
         <section className="grid">
           <h2 className="text-2xl py-10">Scenes</h2>
           {/* One Scene Content Block */}
           <div className="scenesborder-gray-300 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {fileName === null
-              ? "no uploaded file!"
-              : scenes.map((scene, index) => (
+            {filteredScenes.map((scene, index) => (
                   <div key={index} className="bg-white text-blackbg rounded-lg">
                     <div className="flex justify-end items-stretch h-24">
                       <div
