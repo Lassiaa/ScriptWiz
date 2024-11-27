@@ -4,6 +4,7 @@ import { fetchCharacters } from "../db/firestoreService";
 import { useFileContext } from "../contexts/fileContext";
 import { useEffect, useState } from "react";
 import style from "../assets/style";
+import { useNavigate, useNavigation } from "react-router-dom";
 
 const Overview = () => {
   const [scenes, setScenes] = useState([]);
@@ -14,6 +15,7 @@ const Overview = () => {
   // const fileName = json.scenes;
   // USE THIS WHEN NOT TESTING
   const { fileName } = useFileContext();
+  const navigate = useNavigate();
 
   console.log({fileName});
 
@@ -237,7 +239,8 @@ const Overview = () => {
               {characters.map((character, index) => (
                 <p
                   key={index}
-                  className="min-h-12 h-12 pl-2 content-center font-bold border-b"
+                  className="min-h-12 h-12 pl-2 content-center font-bold border-b cursor-pointer"
+                  onClick={() => navigate("/character-details", { state: { character } })}
                 >
                   {character.name}
                 </p>
