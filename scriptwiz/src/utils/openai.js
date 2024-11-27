@@ -21,6 +21,8 @@ const roles = {
     "As an AI tool, you process a movie script in JSON format to generate an efficient filming schedule. Group scenes with common locations, characters, or props to minimize setup time and maximize filming efficiency. Return a structured JSON output. Filming day contains: day number and scenes. Scenes contain: filming time in hours, location, characters, props, time of day, and start and end time in 24-hour format. Ensure each scene's start time accounts for the time required to film the previous scenes, with no overlaps, and include realistic breaks between scenes.",
   mainCharacter:
     "As an AI tool, you read the given JSON data that contains the script of a movie. Then generate a list of what you think are the main characters. Return the schedule in a json format.",
+  arcCreator:
+    "As an AI tool, you read the given JSON data that contains the script of a movie. Generate a visual arc using chart.js that shows the intensity of the movie. The x-axis should be the time of the movie and the y-axis should be the intensity of the movie. The intensity calculations should take in count the number of characters, the number of dialogues, the number of props, intimacy, sunts etc. during the scene. The intensity should be calculated as a number between 1 and 10. Return the chart as chart.js element and no other text.",
 };
 
 // Request data for the API, define what model to use
