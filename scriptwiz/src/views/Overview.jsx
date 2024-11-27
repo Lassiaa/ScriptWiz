@@ -195,7 +195,7 @@ const Overview = () => {
 
   // Handle scenes filtering
   const handleFilterScenes = (category, selected)=>{
-    console.log(category, selected);
+    console.log('handle filters', category, selected);
 
     /*
     setActiveFilters((prevFilters) =>
