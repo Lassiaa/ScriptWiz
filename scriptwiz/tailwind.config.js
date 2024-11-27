@@ -21,7 +21,7 @@ export default {
         timeline: "600px",
       },
       fontFamily: {
-        primary: ["Fascinate"],
+        primary: ["Plaster"],
       },
       backgroundImage: {
         topography: "",
