@@ -34,7 +34,7 @@ const style = {
   sModalContent: "bg-white p-5 rounded-md shadow-lg w-1/2",
   sModalHeading: "flex w-full mb-3 text-black",
   sModalH2: "text-2xl grow self-center",
-  sModalCloseButton: "uppercase text-white bg-primary hover:bg-secondary duration-300 rounded-full",
+  sModalCloseButton: "uppercase text-white bg-primary hover:bg-secondary duration-300 rounded-full size-7",
   sModalData: "mb-3",
 
   // Calendar widget

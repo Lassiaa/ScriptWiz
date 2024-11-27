@@ -13,15 +13,10 @@ const CharacterDetailedPage = () => {
   return (
     <main className="mainStyling p-10">
       <h1 className="text-center pb-10">{character.name}</h1>
-      {/* Display character description */}
-      <article>
-        <h2 className="py-6 text-2xl">Description</h2>
-        <p>About character...</p>
-      </article>
       {/* Display scenes character is in and their age in the scenes */}
       <article>
         <h2 className="py-6 text-2xl">Scenes</h2>
-        <ul className="flex flex-col">
+        <ul className="flex flex-col border rounded-lg p-4">
           {character.ageScenes && character.ageScenes.length > 0 ? (
             character.ageScenes.map((scene, index) => (
               <li className="py-1 flex" key={index}>
@@ -34,10 +29,24 @@ const CharacterDetailedPage = () => {
           )}
         </ul>
       </article>
+      {/* Display character description */}
+      <div>
+        <h2 className="py-6 text-2xl">Description</h2>
+        <div className="
+          border rounded-lg p-4
+          ">
+            Stay tuned!
+        </div>
+      </div>
       {/* Display character relationships */}
       <article>
         <h2 className="py-6 text-2xl">Relationships</h2>
-        <p>Character relationships...</p>
+        {/* <p>Character relationships...</p> */}
+        <div className="
+          border rounded-lg p-4
+          ">
+            Stay tuned!
+        </div>
       </article>
     </main>
   );
