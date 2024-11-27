@@ -3,9 +3,16 @@ import json from "../assets/500_DAYS_OF_SUMMER.pdf";
 import { fetchCharacters } from "../db/firestoreService";
 import { useFileContext } from "../contexts/fileContext";
 import { useEffect, useState } from "react";
-import style from "../assets/style";
+import Arc from "../components/Arc";
 
 const Overview = () => {
+  // Set the number of scenes per act in timeline (hardcoded for now)
+  const acts = [3, 2, 3, 3, 4, 3, 2, 3, 4, 3, 2, 3, 3, 4];
+
+  // Highlight the row and column of the hovered item in timeline to better UX
+  const [hoveredSceneIndex, setHoveredSceneIndex] = useState(null);
+  const [hoveredCharacterIndex, setHoveredCharacterIndex] = useState(null);
+
   const [scenes, setScenes] = useState([]);
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
@@ -14,14 +21,12 @@ const Overview = () => {
   // USE THIS WHEN NOT TESTING
   const { fileName } = useFileContext();
 
-  console.log({fileName});
+  console.log({ fileName });
 
-  {
-    /* FOR DEV TEMPLATE USE (using local files instead from db) */
-  }
-  {
-    /* Get a list of characters from metadata */
-  }
+  /* FOR DEV TEMPLATE USE (using local files instead from db) */
+
+  /* Get a list of characters from metadata */
+
   /*
   const getCharacters = () => {
     const rows = json.metadata.split("\n");
@@ -64,13 +69,13 @@ const Overview = () => {
         );
 
         if (sceneResponse.success && charResponse.success) {
-          console.log("Fetched scenes:", sceneResponse.data.scenes);
+          // console.log("Fetched scenes:", sceneResponse.data.scenes);
           setScenes(sceneResponse.data.scenes);
 
-          console.log(
+          /* console.log(
             "Fetched characters:",
             charResponse.data.parsedCharacters
-          );
+          ); */
           setCharacters(charResponse.data.parsedCharacters);
         } else {
           console.error("Error fetching scenes:", sceneResponse.message);
@@ -90,6 +95,7 @@ const Overview = () => {
   const renderActs = (scenes, characters, scenesPerAct) => {
     let currentSceneIndex = 0;
 
+    // Create a grid for each act and its scenes
     const acts = scenesPerAct.map((numScenes, actIndex) => {
       const startSceneIndex = currentSceneIndex;
       const endSceneIndex = startSceneIndex + numScenes;
@@ -101,55 +107,73 @@ const Overview = () => {
           className="grid"
           style={{ gridTemplateRows: "auto 1fr" }}
         >
-          {/* Act Header */}
+          {/* Sticky header for acts */}
           <div className="h-12 content-center text-center font-bold border-y border-r sticky top-0 bg-white text-black">
             Act {actIndex + 1}
           </div>
-          {/* Scenes in Act */}
+
           <div className="grid grid-flow-col">
             {scenes
               .slice(startSceneIndex, endSceneIndex)
-              .map((scene, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col items-center rounded-md w-24"
-                >
-                  <p className="h-12 content-center text-center font-semibold border-r border-b w-full sticky top-12 bg-white text-black">
-                    S{scene.scene_number}
-                  </p>
-                  {characters.map((character, charIndex) => {
-                    // Check if the character appears in the scene
-                    const isInScene = scene.elements.cast_members.some(
-                      (member) => member.name === character.name
-                    );
-                    return (
-                      <p
-                        key={charIndex}
-                        className="text-sm h-12 content-center text-center border-r border-b w-full"
-                      >
-                        {isInScene ? (
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth="2"
-                            stroke="currentColor"
-                            className="size-6 m-auto"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M6 18 18 6M6 6l12 12"
-                            />
-                          </svg>
-                        ) : (
-                          "-"
-                        )}
-                      </p>
-                    );
-                  })}
-                </div>
-              ))}
+              .map((scene, index) => {
+                const sceneIndex = startSceneIndex + index;
+                const isRowHovered = sceneIndex === hoveredSceneIndex;
+
+                return (
+                  <div
+                    key={index}
+                    className={`flex flex-col items-center rounded-md w-14 ${
+                      isRowHovered ? "bg-secondary/25" : ""
+                    }`}
+                    onMouseEnter={() => setHoveredSceneIndex(sceneIndex)}
+                    onMouseLeave={() => setHoveredSceneIndex(null)}
+                  >
+                    {/* Sticky header for Scenes within acts */}
+                    <p className="h-12 content-center text-center font-semibold border-r border-b w-full sticky top-12 bg-white text-black">
+                      S{scene.scene_number}
+                    </p>
+                    {/* Character Columns */}
+                    {characters.map((character, charIndex) => {
+                      const isInScene = scene.elements.cast_members.some(
+                        (member) => member.name === character.name
+                      );
+                      const isColHovered = charIndex === hoveredCharacterIndex;
+
+                      return (
+                        <p
+                          key={charIndex}
+                          className={`text-sm h-12 content-center text-center border-r border-b w-full ${
+                            isColHovered ? "bg-secondary/25" : ""
+                          }`}
+                          onMouseEnter={() =>
+                            setHoveredCharacterIndex(charIndex)
+                          }
+                          onMouseLeave={() => setHoveredCharacterIndex(null)}
+                        >
+                          {isInScene ? (
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth="2"
+                              stroke="currentColor"
+                              className="size-6 m-auto"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M6 18 18 6M6 6l12 12"
+                              />
+                            </svg>
+                          ) : (
+                            "-"
+                          )}
+                        </p>
+                      );
+                    })}
+                  </div>
+                );
+              })}
           </div>
         </div>
       );
@@ -183,6 +207,36 @@ const Overview = () => {
     return <p className="text-center text-2xl py-20">Loading...</p>; // Loading indicator
   }
 
+  // AI API request to generate readability arc
+  /*
+  let hasArcBeenCreated = false;
+
+ const handleArcCreation = async () => {
+    if (hasArcBeenCreated) {
+      console.warn("Arc creation already triggered.");
+      return;
+    }
+  
+    hasArcBeenCreated = true;
+
+    const jsonString = JSON.stringify(mocData);
+    if (jsonString) {
+      try {
+        const aiPrompt = jsonString;
+        const aiRole = roles.arcCreator;
+        const aiResult = await makeApiRequest(aiPrompt, aiRole);
+        setAiResponse(aiResult);
+      } catch (error) {
+        console.error("Error generating response:", error);
+        setAiResponse({
+          error: "Failed to generate response. Please try again later.",
+        });
+      }
+    } else {
+      console.warn("No script content available to generate AI response.");
+    }
+  }; */
+
   return (
     <main>
       <article className="bg-primary p-10">
@@ -196,7 +250,7 @@ const Overview = () => {
         <div className="relative h-timeline overflow-y-scroll border-2 border-gray-300 rounded-md">
           <section className="rounded-md flex">
             {/* Timeline headings */}
-            <div className="timeline-headings flex flex-col min-w-56 border-x sticky left-0 z-10 bg-white text-black">
+            <div className="timeline-headings flex flex-col min-w-48 w-48 border-x sticky left-0 z-10 bg-white text-black">
               <p className="min-h-12 h-12 pl-2 content-center font-bold border-y sticky top-0 bg-white">
                 Act
               </p>
@@ -215,8 +269,21 @@ const Overview = () => {
 
             {/* Scrollable content */}
             <div className="overscroll-x-auto flex">
-              {renderActs(scenes, characters, [3, 2, 3, 3, 4, 3, 2, 3, 4])}
+              {renderActs(scenes, characters, acts)}
             </div>
+          </section>
+        </div>
+
+        {/* Readability arc */}
+        <div className="h-64 border-2 border-gray-300 rounded-md">
+          <section className="rounded-md flex h-full">
+            <div className="flex flex-col h-full min-w-48 w-48 border-x sticky left-0 z-10 bg-white text-black">
+              <p className="h-full pl-2 content-center font-bold border-y sticky top-0 bg-white">
+                Readability arc
+              </p>
+            </div>
+
+            <Arc />
           </section>
         </div>
       </article>
@@ -237,11 +304,9 @@ const Overview = () => {
                   <div key={index} className="bg-white text-blackbg rounded-lg">
                     <div className="flex justify-end items-stretch h-24">
                       <div
-                      className={`${getBg(
-                          scene.set.type[0],
-                          scene.time
-                        )} 
-                      text-2xl grow flex flex-col justify-center pl-4`}>
+                        className={`${getBg(scene.set.type[0], scene.time)} 
+                      text-2xl grow flex flex-col justify-center pl-4`}
+                      >
                         <p className="inline-block align-middle">
                           #{" "}
                           <span className="font-bold text-2xl">
