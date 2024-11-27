@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import style from "../assets/style";
 import CalendarWidget from "../components/CalendarWidget";
 import SceneInfoModal from "../components/SceneInfoModal";
-import mocData from "../utils/mocdata.json";
+import mocData from "../utils/scheduleMocdata.json";
 
 import Weather from "../components/Weather";
 import { useFileContext } from "../contexts/fileContext";
@@ -91,17 +91,17 @@ function SchedulePage() {
         // Set background color based on time of day and place
         let bgColor;
         if (time_of_day === "MORNING" && place === "INT")
-          bgColor = "bg-morningInt";
+          bgColor = "bg-morningInt text-black";
         else if (time_of_day === "MORNING" && place === "EXT")
-          bgColor = "bg-morningExt";
+          bgColor = "bg-morningExt text-black";
         else if (time_of_day === "EVENING" && place === "INT")
-          bgColor = "bg-eveningInt";
+          bgColor = "bg-eveningInt text-black";
         else if (time_of_day === "EVENING" && place === "EXT")
           bgColor = "bg-eveningExt text-white";
         else if (time_of_day === "DAY" && place === "INT")
-          bgColor = "bg-dayInt";
+          bgColor = "bg-dayInt text-black";
         else if (time_of_day === "DAY" && place === "EXT")
-          bgColor = "bg-dayExt";
+          bgColor = "bg-dayExt text-black";
         else if (time_of_day === "NIGHT" && place === "INT")
           bgColor = "bg-nightInt text-white";
         else if (time_of_day === "NIGHT" && place === "EXT")
@@ -166,14 +166,19 @@ function SchedulePage() {
     });
   };
 
-  // Get the month name for the heading
+  // Get the month and year names for the heading
   const selectedMonth = selectedDate.toLocaleString("en-US", { month: "long" });
+  const selectedYear = selectedDate.getFullYear();
 
   return (
     <main className="">
       <article className="bg-primary p-10">
-        <h1 className="text-3xl font-bold uppercase">Schedule, {selectedMonth}</h1>
-        <p className="">{fileName} | Location: {city}</p>
+        <h1 className="text-3xl font-bold uppercase">
+          Schedule <br /> {selectedYear}, {selectedMonth}
+        </h1>
+        <p className="">
+          {fileName} | Location: {city}
+        </p>
       </article>
 
       <article className={`flex flex-row ${style.sPage}`}>
@@ -212,7 +217,9 @@ function SchedulePage() {
                       className={`rounded-md w-full my-1 p-1 ${scene.bgColor} cursor-pointer`}
                       onClick={() => openSceneModal(scene)}
                     >
-                      <div>Scene: {scene.scene_number}</div>
+                      <div>
+                        {scene.scene_number}: {scene.location}
+                      </div>
                     </div>
                   ))}
                 </div>
