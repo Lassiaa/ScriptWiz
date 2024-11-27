@@ -2,22 +2,18 @@ import { useEffect, useState } from "react";
 import style from "../assets/style";
 import { setScript } from "../db/firestoreService";
 import { useFileContext } from "../contexts/fileContext";
-import { makeApiRequest, roles } from "../utils/openai";
 import { useNavigate } from "react-router-dom";
 
 function FrontPage() {
   const [isFile, setFile] = useState(false);
-  const [scriptContent, setScriptContent] = useState(null);
-  const [aiResponse, setAiResponse] = useState("");
-  const { setFileName } = useFileContext();
+  const { fileName, setFileName } = useFileContext();
   const navigate = useNavigate();
 
   // Check if there already is a script in local storage
   useEffect(() => {
-    if (localStorage.getItem("script")) {
+    const storedScript = localStorage.getItem("script");
+    if (storedScript) {
       setFile(true);
-      setScriptContent(localStorage.getItem("script"));
-      console.log("Script content:", scriptContent);
     }
   }, []);
 
@@ -50,23 +46,20 @@ function FrontPage() {
 
     reader.onload = async (e) => {
       try {
-        console.log("Script content:", scriptContent);
         const jsonContent = JSON.parse(e.target.result);
 
         localStorage.setItem("script", JSON.stringify(jsonContent));
+
         setFile(true);
         setFileName(file.name);
 
         // set the script with parsed characters
         const parsedCharacters = parseCharacterString(jsonContent.metadata);
         // set the script with all the listed scenes
-        const scenes = jsonContent.scenes
+        const scenes = jsonContent.scenes;
 
         await setScript(file.name, "characters", { parsedCharacters });
         await setScript(file.name, "scenes", { scenes });
-
-        //go to overview page after upload
-        //navigate("/overview");
       } catch (error) {
         console.error("Error reading file:", error);
       }
@@ -78,7 +71,7 @@ function FrontPage() {
   };
 
   // Handle generate click and make API request
-  const handleGenerateClick = async () => {
+  /* const handleGenerateClick = async () => {
     if (scriptContent) {
       try {
         const aiPrompt = scriptContent;
@@ -95,10 +88,10 @@ function FrontPage() {
     } else {
       console.warn("No script content available to generate AI response.");
     }
-  };
+  }; */
 
   return (
-  <main className="h-[90vh] flex grow frontpageMain">
+    <main className="h-[90vh] flex grow frontpageMain">
       <div className={style.frontPageBody}>
         <h1 className={style.frontPageHeading}>Welcome!</h1>
         <p className="pt-3">Please upload your .json file to get started.</p>
@@ -120,7 +113,9 @@ function FrontPage() {
           {!isFile ? (
             <p className={style.fileInfo}>No file uploaded</p>
           ) : (
-            <p className={style.fileInfo}>File uploaded successfully!</p>
+            <p className={style.fileInfo}>
+              File {fileName} uploaded successfully!
+            </p>
           )}
           <label htmlFor="file-upload" className={style.fileUpload}>
             Upload
@@ -133,20 +128,22 @@ function FrontPage() {
             id="file-upload"
           />
         </div>
-        {isFile
-        ? (<button
-        onClick={()=>{navigate("/overview")}}
-          className={`p-2 w-96 font-bold rounded-full duration-300 bg-primary hover:bg-secondary`}
-        >
-          GENERATE OVERVIEW
-        </button>)
-        : (null)}
-        
-        {aiResponse && (
-          <div className={style.aiResponse}>
-            <h2>AI Response:</h2>
-            <p>{aiResponse}</p>
-          </div>
+        {isFile ? (
+          <button
+            onClick={() => {
+              navigate("/overview");
+            }}
+            className={`p-2 w-96 font-bold rounded-full duration-300 bg-primary hover:bg-secondary`}
+          >
+            GENERATE OVERVIEW
+          </button>
+        ) : (
+          <button
+            disabled
+            className={`p-2 w-96 font-bold rounded-full duration-300 bg-gray-400 hover:bg-gray-300`}
+          >
+            GENERATE OVERVIEW
+          </button>
         )}
       </div>
     </main>
