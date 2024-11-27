@@ -256,8 +256,6 @@ const Overview = () => {
         break;
     }
   }
-    console.log("handle ", scenes);
-  };
 
   // AI API request to generate readability arc
   /*
