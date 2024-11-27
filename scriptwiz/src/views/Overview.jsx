@@ -2,7 +2,8 @@
 // import json from "../assets/500_DAYS_OF_SUMMER.pdf";
 import { fetchCharacters } from "../db/firestoreService";
 import { useFileContext } from "../contexts/fileContext";
-import { useEffect, useState, useNavigate } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Arc from "../components/Arc";
 
 const Overview = () => {
