@@ -1,8 +1,8 @@
 // import style from "../assets/style";
-import json from "../assets/500_DAYS_OF_SUMMER.pdf";
+// import json from "../assets/500_DAYS_OF_SUMMER.pdf";
 import { fetchCharacters } from "../db/firestoreService";
 import { useFileContext } from "../contexts/fileContext";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useNavigate } from "react";
 import Arc from "../components/Arc";
 
 const Overview = () => {
