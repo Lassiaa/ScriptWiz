@@ -65,3 +65,8 @@
   src: url('/font/Plaster-Regular.woff2') format('woff2');
   font-weight: normal;
 }
+@font-face {
+  font-family: "Fascinate";
+  src: url('/font/Fascinate-Regular.woff2') format('woff2');
+  font-weight: normal;
+}

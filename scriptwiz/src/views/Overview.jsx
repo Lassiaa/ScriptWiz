@@ -17,6 +17,9 @@ const Overview = () => {
   const [scenes, setScenes] = useState([]);
   const [characters, setCharacters] = useState([]);
   const [filteredScenes, setFilteredScenes] = useState();
+  const [activeCharacter, setActiveCharacter] = useState("All");
+  const [activeButton, setActiveButton] = useState();
+  const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(true); // Loading state
   // FOR DEV MOCK DATA TESTING ONLY
   // const fileName = json.scenes;
@@ -218,35 +221,41 @@ const Overview = () => {
   const handleFilterScenes = (category, selected) => {
     console.log(category, selected);
 
-    switch (category) {
+    /*
+    setActiveFilters((prevFilters) =>
+      prevFilters.includes(selected)
+        ? prevFilters.filter((filter) => filter !== selected) // Remove if already active
+        //add multiple filters
+        //: [...prevFilters, selected]
+    );*/
+
+    switch(category){
       case 1:
-        setFilteredScenes(
-          selected === ""
-            ? scenes
-            : scenes.filter((scene) => scene.time.includes(selected))
-        );
+        setFilteredScenes(selected === "" ? scenes : scenes.filter((scene) => scene.time.includes(selected)));
+        setActiveButton(selected);
+        console.log('active button',activeButton)
         break;
       case 2:
-        setFilteredScenes(
-          selected === ""
-            ? scenes
-            : scenes.filter((scenes) => scenes.set.type.includes(selected))
-        );
+        setFilteredScenes(selected === "" ? scenes : scenes.filter((scenes) => scenes.set.type.includes(selected)));
+        setActiveButton(selected);
         break;
       case 3:
-        setFilteredScenes(
-          selected === ""
-            ? scenes
-            : scenes.filter((scene) =>
-                scene.elements.cast_members.some((member) =>
-                  member.name.includes(selected)
-                )
-              )
+        setFilteredScenes(selected === "All"
+          ? scenes
+          : scenes.filter((scene)=>
+            scene.elements.cast_members.some((member) => member.name.includes(selected))
+          )
         );
+        setIsOpen(false);
+        setActiveCharacter(selected);
+        setActiveButton(null);
         break;
       default:
+        setFilteredScenes(scenes);
+        setActiveButton(null);
         break;
     }
+  }
     console.log("handle ", scenes);
   };
 
@@ -289,7 +298,7 @@ const Overview = () => {
 
       {/* Timeline content */}
       <article className="px-10 py-10">
-        <h2 className="text-2xl pb-10">Timeline</h2>
+        <h2 className="text-2xl pb-10 font-bold">Timeline</h2>
         <div className="relative h-timeline overflow-y-scroll border-2 border-gray-300 rounded-md">
           <section className="rounded-md flex">
             {/* Timeline headings */}
@@ -336,87 +345,109 @@ const Overview = () => {
 
       {/* Overview content */}
       <article className="flex flex-col justify-center px-10 pb-28">
-        <section>
-          {/* <p className="text-3xl pb-10">Scene count: </p>*/}
-          <p className="text-3xl pb-10">Filter by: </p>
-          <div>
-            <p>Time:</p>
-            <button
-              onClick={() => handleFilterScenes(1, "")}
-              className="uppercase p-2 w-24 font-bold rounded-full duration-300 border-bg-primary border hover:bg-secondary hover:border-black"
-            >
-              All
-            </button>
-            <button
-              onClick={() => handleFilterScenes(1, "MORNING")}
-              className="uppercase p-2 w-24 font-bold rounded-full duration-300 bg-primary hover:bg-secondary"
-            >
-              Morning
-            </button>
-            <button
-              onClick={() => handleFilterScenes(1, "DAY")}
-              className="uppercase p-2 w-24 font-bold rounded-full duration-300 bg-primary hover:bg-secondary"
-            >
-              Day
-            </button>
-            <button
-              onClick={() => handleFilterScenes(1, "EVENING")}
-              className="uppercase p-2 w-24 font-bold rounded-full duration-300 bg-primary hover:bg-secondary"
-            >
-              Evening
-            </button>
-            <button
-              onClick={() => handleFilterScenes(1, "NIGHT")}
-              className="uppercase p-2 w-24 font-bold rounded-full duration-300 bg-primary hover:bg-secondary"
-            >
-              Night
-            </button>
-          </div>
-          <div>
-            <p>Set type:</p>
-            <button
-              onClick={() => handleFilterScenes(2, "")}
-              className="uppercase p-2 w-24 font-bold rounded-full duration-300 border-bg-primary border hover:bg-secondary hover:border-black"
-            >
-              All
-            </button>
-            <button
-              onClick={() => handleFilterScenes(2, "INT")}
-              className="uppercase p-2 w-24 font-bold rounded-full duration-300 bg-primary hover:bg-secondary"
-            >
-              Interior
-            </button>
-            <button
-              onClick={() => handleFilterScenes(2, "EXT")}
-              className="uppercase p-2 w-24 font-bold rounded-full duration-300 bg-primary hover:bg-secondary"
-            >
-              Exterior
-            </button>
-          </div>
-          <div>
-            <p>Character:</p>
-            <button
-              onClick={() => handleFilterScenes(3, "")}
-              className="uppercase p-2 w-24 font-bold rounded-full duration-300 border-bg-primary border hover:bg-secondary hover:border-black"
-            >
-              All
-            </button>
-            <button
-              onClick={() => handleFilterScenes(3, "Tom")}
-              className="uppercase p-2 w-24 font-bold rounded-full duration-300 bg-primary hover:bg-secondary"
-            >
-              Tom
-            </button>
-            <button
-              onClick={() => handleFilterScenes(3, "Summer")}
-              className="uppercase p-2 w-24 font-bold rounded-full duration-300 bg-primary hover:bg-secondary"
-            >
-              Summer
-            </button>
-          </div>
-        </section>
         <section className="grid">
-          <h2 className="text-2xl py-10">Scenes</h2>
+          <h2 className="text-2xl py-10 font-bold">Scenes</h2>
+          <div className="pb-10 w-full md:w-full lg:w-[900px]">
+            <p className="text-xl">Filter by: </p>
+            <div className="flex flex-col lg:flex-row justify-between">
+              <div>
+                <p className="uppercase py-4">Time</p>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => handleFilterScenes(1, "")}
+                    className={`uppercase p-2 w-24 font-bold rounded-full duration-300 border-primary border hover:bg-secondary hover:border-black ${activeButton === '' ? 'bg-primary' : 'bg-transparent'}`}
+                    >
+                      All
+                  </button>
+                  <button 
+                    onClick={() => handleFilterScenes(1, "MORNING")}
+                    className={`uppercase p-2 w-24 font-bold rounded-full duration-300 hover:bg-secondary ${activeButton === 'MORNING' ? 'bg-primary' : 'bg-transparent'}`}
+                  >
+                    Morning
+                  </button>
+
+                  <button 
+                    onClick={() => handleFilterScenes(1, "DAY")}
+                    className={`uppercase p-2 w-24 font-bold rounded-full duration-300 hover:bg-secondary ${activeButton === 'DAY' ? 'bg-primary' : 'bg-transparent'}`}
+                  >
+                    Day
+                  </button>
+
+                  <button 
+                    onClick={() => handleFilterScenes(1, "EVENING")}
+                    className={`uppercase p-2 w-24 font-bold rounded-full duration-300 hover:bg-secondary ${activeButton === 'EVENING' ? 'bg-primary' : 'bg-transparent'}`}
+                  >
+                    Evening
+                  </button>
+
+                  <button 
+                    onClick={() => handleFilterScenes(1, "NIGHT")}
+                    className={`uppercase p-2 w-24 font-bold rounded-full duration-300 hover:bg-secondary ${activeButton === 'NIGHT' ? 'bg-primary' : 'bg-transparent'}`}
+                  >
+                    Night
+                  </button>
+                </div>
+              </div>
+              <div>
+                <p className="uppercase py-4">Set type</p>
+                <div className="flex gap-2">
+                  <button 
+                    onClick={() => handleFilterScenes(2, "")}
+                    className={`uppercase p-2 w-24 font-bold rounded-full duration-300 border-primary border hover:bg-secondary hover:border-black ${activeButton === '' ? 'bg-primary' : 'bg-transparent'}`}
+                  >
+                    All
+                  </button>
+
+                  <button 
+                    onClick={() => handleFilterScenes(2, "INT")}
+                    className={`uppercase p-2 w-24 font-bold rounded-full duration-300 hover:bg-secondary ${activeButton === 'INT' ? 'bg-primary' : 'bg-transparent'}`}
+                  >
+                    Interior
+                  </button>
+
+                  <button 
+                    onClick={() => handleFilterScenes(2, "EXT")}
+                    className={`uppercase p-2 w-24 font-bold rounded-full duration-300 hover:bg-secondary ${activeButton === 'EXT' ? 'bg-primary' : 'bg-transparent'}`}
+                  >
+                    Exterior
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="w-full">
+              <p className="uppercase py-4">Character</p>
+              <div className={`group relative cursor-pointer py-2 rounded-full ${isOpen ? 'bg-secondary border-secondary' : 'bg-transparent'} border hover:bg-secondary hover:border-secondary transition duration-300`}>
+                <div className="flex items-center justify-between p-2 text-white font-bold" onClick={() => setIsOpen(!isOpen)}>
+                  <button className={`p-2 uppercase`}>
+                    {activeButton !== null ? 'All' : activeCharacter}
+                  </button>
+                  <span className="pr-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="h-6 w-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                    </svg>
+                  </span>
+                </div>
+
+              {/* Dropdown menu */}
+              <div
+                className={`absolute z-50 w-full flex flex-col bg-blackbg shadow-2xl rounded text-white ${isOpen ? 'visible' : 'invisible'}`}
+              >
+                <button onClick={() => handleFilterScenes(3, "All")} className="my-2 block py-1 text-primary hover:text-secondary font-bold">
+                  All
+                </button>
+                {characters.map((character, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleFilterScenes(3, `${character.name}`)}
+                    className={`hover:bg-secondary rounded-full transition duration-300 p-2`}
+                  >
+                    {character.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+            </div>
+          </div>
           {/* One Scene Content Block */}
           <div className="scenesborder-gray-300 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {filteredScenes.map((scene, index) => (
@@ -499,16 +530,20 @@ const Overview = () => {
                   {scene.elements.cast_members.length > 0 && (
                     <ul>
                       {scene.elements.cast_members.length > 0 && (
-                        <span className="font-bold">
-                          Characters: ({scene.elements.cast_members.length})
-                        </span>
-                      )}
-                      {scene.elements.cast_members.map(
-                        (character, indexCast) => (
-                          <li key={indexCast}>
-                            {character.name}, {character.age}
-                          </li>
-                        )
+                        <ul>
+                          {scene.elements.cast_members.length > 0 && (
+                            <span className="font-bold">
+                              Characters: ({scene.elements.cast_members.length})
+                            </span>
+                          )}
+                          {scene.elements.cast_members.map(
+                            (character, indexCast) => (
+                              <li key={indexCast} onClick={() => navigate("/character-details", { state: { character } })} className="cursor-pointer hover:text-secondary">
+                                {character.name}, {character.age}
+                              </li>
+                            )
+                          )}
+                        </ul>
                       )}
                     </ul>
                   )}
