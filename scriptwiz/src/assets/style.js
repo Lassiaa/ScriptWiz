@@ -30,7 +30,7 @@ const style = {
 
   // Schedule Modal
   sModal:
-    "fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50 text-black",
+    "fixed inset-0 bg-transparent flex items-center justify-center z-50 text-black",
   sModalContent: "bg-white p-5 rounded-md shadow-lg w-1/2",
   sModalHeading: "flex w-full mb-3 text-black",
   sModalH2: "text-2xl grow self-center",
@@ -40,12 +40,12 @@ const style = {
 
   // Calendar widget
   modal:
-    "fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-20 text-black",
-  modalContent: "bg-white rounded-lg p-4 w-96 h-96 overflow-y-auto",
+    "fixed inset-0 bg-transparent flex justify-center items-center z-20 text-black",
+  modalContent: "relative bg-white rounded-lg p-4 w-96 h-96 overflow-y-auto",
   calendarModalButton:
     "bg-primary uppercase text-white font-bold py-2 px-8 rounded-full hover:bg-secondary flex items-center gap-2 fixed bottom-6 left-6 duration-300",
   closeButton:
-    "absolute top-3 right-3 text-white rounded-full py-2 px-8 bg-primary uppercase hover:bg-secondary duration-300 font-bold",
+    "absolute top-0 right-0 text-white rounded-full size-7 bg-primary uppercase hover:bg-secondary duration-300 font-bold",
 };
 
 export default style;
