@@ -65,12 +65,12 @@ const Overview = () => {
       try {
         //USE THIS WHEN TESTING
         const sceneResponse = await fetchCharacters(
-          "500_DAYS_OF_SUMMER.pdf.json",
+          fileName,
           "scenes"
         );
 
         const charResponse = await fetchCharacters(
-          "500_DAYS_OF_SUMMER.pdf.json",
+          fileName,
           "characters"
         );
 
