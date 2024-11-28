@@ -20,6 +20,8 @@ function SchedulePage() {
 
   const filmingDates = [];
 
+  console.log('test')
+
   const openSceneModal = (scene) => {
     setSelectedScene(scene);
     setShowModal(true);
