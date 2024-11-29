@@ -52,6 +52,7 @@ const SceneInfoModal = ({ show, handleClose, sceneInfo }) => {
           <strong>Props:</strong> {props.join(", ")}
         </div>
       </div>
+      <div className="fixed bg-black bg-opacity-50 -z-10 w-full h-full top-0 left-0" onClick={handleClose}></div>
     </div>
   );
 };
