@@ -13,12 +13,12 @@ function SchedulePage() {
   const [currentDate] = useState(new Date());
   const [showModal, setShowModal] = useState(false);
   const [selectedScene, setSelectedScene] = useState(null);
-
-  const { city, weatherData } = Weather();
-
   const { fileName } = useFileContext();
-
   const filmingDates = [];
+
+  // Data for the weather API
+  const [cityInput, setCityInput] = useState("");
+  const { city, weatherData, fetchWeatherData } = Weather();
 
   const openSceneModal = (scene) => {
     setSelectedScene(scene);
@@ -177,8 +177,26 @@ function SchedulePage() {
           Schedule <br /> {selectedYear}, {selectedMonth}
         </h1>
         <p className="">
-          {fileName} | Location: {city}
+          {fileName} | Location: {city || "N/A"}
         </p>
+      </article>
+
+      {/* Input section for weather data */}
+      <article className="mx-10 my-2">
+        <h2 className="text-2xl font-bold">Filming location:</h2>
+        <input
+          type="text"
+          placeholder="City"
+          className="p-2 mt-2 mr-2 rounded-md text-black"
+          value={cityInput}
+          onChange={(e) => setCityInput(e.target.value)}
+        />
+        <button
+          className="w-20 bg-primary p-2 rounded-md hover:bg-secondary duration-300 ease-in-out"
+          onClick={() => fetchWeatherData(cityInput)}
+        >
+          Set
+        </button>
       </article>
 
       <article className={`flex flex-row ${style.sPage}`}>

@@ -71,7 +71,7 @@ function CharacterBrowsingPage() {
           <h2 className="text-xl">Filter</h2>
           <input
             type="text"
-            className="border rounded px-2 py-1 w-full"
+            className="border rounded px-2 py-1 w-full text-black"
             placeholder="Search"
             value={searchTerm}
             onChange={handleSearchChange}
