@@ -5,6 +5,8 @@ import { useFileContext } from "../contexts/fileContext";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Arc from "../components/Arc";
+import IntimacyArc from "../components/IntimacyArc";
+import ViolenceArc from "../components/ViolenceArc";
 
 const Overview = () => {
   // Set the number of scenes per act in timeline (hardcoded for now)
@@ -363,14 +365,23 @@ const Overview = () => {
         </div>
 
         {/* Readability arc */}
-        <div className="h-64 border-2 border-gray-300 rounded-md">
-          <section className="rounded-md flex h-full">
-            <div className="flex flex-col h-full min-w-48 w-48 border-x sticky left-0 z-10 bg-white text-black">
-              <p className="h-full pl-2 content-center font-bold border-y sticky top-0 bg-white">
-                Readability arc
-              </p>
+        <div className="border-2 border-gray-300 rounded-md">
+          <section className="flex h-64">
+            <div className="flex flex-col min-w-52 w-52 border-x sticky left-0 z-10 bg-white text-black">
+              <p className="h-full pl-2 content-center font-bold">Intimacy</p>
             </div>
-
+            <IntimacyArc />
+          </section>
+          <section className="flex h-64 border-y">
+            <div className="flex flex-col min-w-52 w-52 border-x sticky left-0 z-10 bg-white text-black">
+              <p className="h-full pl-2 content-center font-bold">Violence</p>
+            </div>
+            <ViolenceArc />
+          </section>
+          <section className="flex h-64">
+            <div className="flex flex-col min-w-52 w-52 border-x sticky left-0 z-10 bg-white text-black">
+              <p className="h-full pl-2 content-center font-bold">?</p>
+            </div>
             <Arc />
           </section>
         </div>
