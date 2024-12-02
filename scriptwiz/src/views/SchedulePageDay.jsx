@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import style from "../assets/style";
 import CalendarWidgetDay from "../components/CalendarWidgetDay";
 import SceneInfoModal from "../components/SceneInfoModal";
-import mocData from "../utils/scheduleMocdata.json";
+import mocData from "../utils/scheduleMockdata.json";
 
 function SchedulePage() {
   const [selectedDate, setSelectedDate] = useState(new Date());

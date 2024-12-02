@@ -1,4 +1,6 @@
 import { Line } from "react-chartjs-2";
+import arcData from "../utils/arcMockdata.json";
+
 import {
   Chart as ChartJS,
   LineElement,
@@ -21,134 +23,15 @@ ChartJS.register(
 );
 
 const Arc = () => {
-  const scenes = [
-    {
-      scene_number: 1,
-      cast_count: 2,
-      dialogues_count: 1,
-      props_count: 1,
-      intimacy_count: 1,
-      stunts_count: 0,
-    },
-    {
-      scene_number: 2,
-      cast_count: 1,
-      dialogues_count: 1,
-      props_count: 3,
-      intimacy_count: 0,
-      stunts_count: 0,
-    },
-    {
-      scene_number: 3,
-      cast_count: 1,
-      dialogues_count: 0,
-      props_count: 2,
-      intimacy_count: 0,
-      stunts_count: 0,
-    },
-    {
-      scene_number: 4,
-      cast_count: 3,
-      dialogues_count: 3,
-      props_count: 1,
-      intimacy_count: 2,
-      stunts_count: 1,
-    },
-    {
-      scene_number: 5,
-      cast_count: 2,
-      dialogues_count: 2,
-      props_count: 1,
-      intimacy_count: 1,
-      stunts_count: 1,
-    },
-    {
-      scene_number: 6,
-      cast_count: 1,
-      dialogues_count: 1,
-      props_count: 1,
-      intimacy_count: 0,
-      stunts_count: 0,
-    },
-    {
-      scene_number: 7,
-      cast_count: 2,
-      dialogues_count: 2,
-      props_count: 1,
-      intimacy_count: 1,
-      stunts_count: 0,
-    },
-    {
-      scene_number: 8,
-      cast_count: 1,
-      dialogues_count: 0,
-      props_count: 0,
-      intimacy_count: 0,
-      stunts_count: 0,
-    },
-    {
-      scene_number: 9,
-      cast_count: 3,
-      dialogues_count: 3,
-      props_count: 1,
-      intimacy_count: 2,
-      stunts_count: 1,
-    },
-    {
-      scene_number: 10,
-      cast_count: 2,
-      dialogues_count: 2,
-      props_count: 1,
-      intimacy_count: 1,
-      stunts_count: 1,
-    },
-    {
-      scene_number: 11,
-      cast_count: 1,
-      dialogues_count: 1,
-      props_count: 1,
-      intimacy_count: 0,
-      stunts_count: 0,
-    },
-    {
-      scene_number: 12,
-      cast_count: 2,
-      dialogues_count: 2,
-      props_count: 1,
-      intimacy_count: 1,
-      stunts_count: 0,
-    },
-    {
-      scene_number: 13,
-      cast_count: 1,
-      dialogues_count: 0,
-      props_count: 0,
-      intimacy_count: 0,
-      stunts_count: 0,
-    },
-    {
-      scene_number: 14,
-      cast_count: 3,
-      dialogues_count: 3,
-      props_count: 1,
-      intimacy_count: 2,
-      stunts_count: 1,
-    },
-    {
-      scene_number: 15,
-      cast_count: 2,
-      dialogues_count: 2,
-      props_count: 1,
-      intimacy_count: 1,
-      stunts_count: 1,
-    },
-  ];
+  // Mock data for the arc page generated using AI
+  const scenes = arcData.scenes;
 
+  // Calculate the intensity of each scene. Calculation is created using AI
   const calculateIntensity = (scene) => {
     return Math.min(
       1 +
-        scene.cast_count * 2 +
-        scene.dialogues_count * 3 +
+        scene.cast_count * 0.5 +
+        scene.dialogues_count * 1.5 +
         scene.props_count +
         scene.intimacy_count * 4 +
         scene.stunts_count * 5,
@@ -158,6 +41,7 @@ const Arc = () => {
 
   const intensities = scenes.map((scene) => calculateIntensity(scene));
 
+  // Chart data and options
   const data = {
     labels: scenes.map((scene) => `Scene ${scene.scene_number}`),
     datasets: [

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import style from "../assets/style";
 import SceneInfoModal from "../components/SceneInfoModal";
-import mocData from "../utils/scheduleMocdata.json";
+import mocData from "../utils/scheduleMockdata.json";
 
 import Weather from "../components/Weather";
 import { useFileContext } from "../contexts/fileContext";
