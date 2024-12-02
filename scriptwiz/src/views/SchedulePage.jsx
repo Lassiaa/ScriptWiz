@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import style from "../assets/style";
-import CalendarWidget from "../components/CalendarWidget";
 import SceneInfoModal from "../components/SceneInfoModal";
 import mocData from "../utils/scheduleMocdata.json";
 
@@ -19,6 +18,10 @@ function SchedulePage() {
   // Data for the weather API
   const [cityInput, setCityInput] = useState("");
   const { city, weatherData, fetchWeatherData } = Weather();
+
+  // Get the month and year names for the heading
+  const selectedMonth = selectedDate.toLocaleString("en-US", { month: "long" });
+  const selectedYear = selectedDate.getFullYear();
 
   const openSceneModal = (scene) => {
     setSelectedScene(scene);
@@ -166,9 +169,16 @@ function SchedulePage() {
     });
   };
 
-  // Get the month and year names for the heading
-  const selectedMonth = selectedDate.toLocaleString("en-US", { month: "long" });
-  const selectedYear = selectedDate.getFullYear();
+  // Change the month when the user clicks the navigation buttons
+  const handleMonthChange = (direction) => {
+    setSelectedDate(
+      new Date(
+        selectedDate.getFullYear(),
+        selectedDate.getMonth() + direction,
+        1
+      )
+    );
+  };
 
   return (
     <main className="">
@@ -182,7 +192,7 @@ function SchedulePage() {
       </article>
 
       {/* Input section for weather data */}
-      <article className="mx-10 my-2">
+      <article className="px-10 py-6">
         <h2 className="text-2xl font-bold">Filming location:</h2>
         <input
           type="text"
@@ -199,6 +209,25 @@ function SchedulePage() {
         </button>
       </article>
 
+      {/* Navigation buttons for calendar */}
+      <article>
+        <section className="grid grid-cols-2 px-10">
+          <button
+            className="w-36 bg-primary p-2 rounded-md hover:bg-secondary duration-300 ease-in-out"
+            onClick={() => handleMonthChange(-1)}
+          >
+            Previous month
+          </button>
+          <button
+            className="w-36 place-self-end bg-primary p-2 rounded-md hover:bg-secondary duration-300 ease-in-out"
+            onClick={() => handleMonthChange(1)}
+          >
+            Next month
+          </button>
+        </section>
+      </article>
+
+      {/* Schedule grid */}
       <article className={`flex flex-row ${style.sPage}`}>
         <section className="border-2 rounded-md grow">
           <div className="grid grid-cols-7 gap-2 text-center h-full p-2 auto-rows-max">
@@ -252,8 +281,6 @@ function SchedulePage() {
         handleClose={closeSceneModal}
         sceneInfo={selectedScene}
       />
-
-      <CalendarWidget onMonthChange={(date) => setSelectedDate(date)} />
     </main>
   );
 }
