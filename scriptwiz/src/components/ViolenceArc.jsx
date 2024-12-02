@@ -24,7 +24,7 @@ ChartJS.register(
 
 const ViolenceArc = () => {
   // Mock data for the arc page generated using AI
-  const scenes = arcData.violenceScenes;
+  const scenes = arcData.scenes;
 
   console.log(scenes);
 

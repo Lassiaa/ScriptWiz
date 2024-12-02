@@ -24,7 +24,7 @@ ChartJS.register(
 
 const IntimacyArc = () => {
   // Mock data for the arc page generated using AI
-  const scenes = arcData.intimacyScenes;
+  const scenes = arcData.scenes;
 
   console.log(scenes);
 

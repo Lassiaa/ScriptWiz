@@ -4,7 +4,7 @@ import { fetchCharacters } from "../db/firestoreService";
 import { useFileContext } from "../contexts/fileContext";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Arc from "../components/Arc";
+import DialogueArc from "../components/DialogueArc";
 import IntimacyArc from "../components/IntimacyArc";
 import ViolenceArc from "../components/ViolenceArc";
 
@@ -368,21 +368,21 @@ const Overview = () => {
         <div className="border-2 border-gray-300 rounded-md">
           <section className="flex h-64">
             <div className="flex flex-col min-w-52 w-52 border-x sticky left-0 z-10 bg-white text-black">
+              <p className="h-full pl-2 content-center font-bold">Dialogues</p>
+            </div>
+            <DialogueArc />
+          </section>
+          <section className="flex h-64 border-y">
+            <div className="flex flex-col min-w-52 w-52 border-x sticky left-0 z-10 bg-white text-black">
               <p className="h-full pl-2 content-center font-bold">Intimacy</p>
             </div>
             <IntimacyArc />
           </section>
-          <section className="flex h-64 border-y">
+          <section className="flex h-64">
             <div className="flex flex-col min-w-52 w-52 border-x sticky left-0 z-10 bg-white text-black">
               <p className="h-full pl-2 content-center font-bold">Violence</p>
             </div>
             <ViolenceArc />
-          </section>
-          <section className="flex h-64">
-            <div className="flex flex-col min-w-52 w-52 border-x sticky left-0 z-10 bg-white text-black">
-              <p className="h-full pl-2 content-center font-bold">?</p>
-            </div>
-            <Arc />
           </section>
         </div>
       </article>

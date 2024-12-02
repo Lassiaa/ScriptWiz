@@ -22,31 +22,23 @@ ChartJS.register(
   PointElement
 );
 
-const Arc = () => {
+const DialogueArc = () => {
   // Mock data for the arc page generated using AI
   const scenes = arcData.scenes;
 
   // Calculate the intensity of each scene. Calculation is created using AI
-  const calculateIntensity = (scene) => {
-    return Math.min(
-      1 +
-        scene.cast_count * 0.5 +
-        scene.dialogues_count * 1.5 +
-        scene.props_count +
-        scene.intimacy_count * 4 +
-        scene.stunts_count * 5,
-      10
-    );
+  const calculateDialogues = (scene) => {
+    return scene.dialogues_count;
   };
 
-  const intensities = scenes.map((scene) => calculateIntensity(scene));
+  const intensities = scenes.map((scene) => calculateDialogues(scene));
 
   // Chart data and options
   const data = {
     labels: scenes.map((scene) => `Scene ${scene.scene_number}`),
     datasets: [
       {
-        label: "Scene Intensity",
+        label: "Scene Dialogues",
         data: intensities,
         borderColor: "rgba(37, 150, 235, 1)",
         borderWidth: 4,
@@ -93,8 +85,6 @@ const Arc = () => {
         ticks: {
           color: "rgba(255, 255, 255, 1)",
         },
-        min: 0,
-        max: 10,
       },
     },
   };
@@ -106,4 +96,4 @@ const Arc = () => {
   );
 };
 
-export default Arc;
+export default DialogueArc;
