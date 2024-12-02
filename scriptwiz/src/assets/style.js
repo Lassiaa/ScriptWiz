@@ -10,7 +10,7 @@ const style = {
   overviewTableItem: "text-2xl border-2 rounded-md p-2",
 
   // Schdeule Page
-  sPage: "p-10",
+  sPage: "px-10 pb-10",
   sHeading: "flex mb-10 w-full",
   sH1: "grow",
   sDayButton: "bg-blue-300 w-20 justify-items-center",

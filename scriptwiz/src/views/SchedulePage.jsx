@@ -184,45 +184,51 @@ function SchedulePage() {
     <main className="">
       <article className="bg-primary p-10">
         <h1 className="text-3xl font-bold uppercase">
-          Schedule <br /> {selectedYear}, {selectedMonth}
+          Schedule
         </h1>
         <p className="">
-          {fileName} | Location: {city || "N/A"}
+          {fileName}
         </p>
       </article>
 
       {/* Input section for weather data */}
       <article className="px-10 py-6">
-        <h2 className="text-2xl font-bold">Filming location:</h2>
+        <h2 className="text-2xl font-bold">Filming location: {city}</h2>
+        <p className="text-gray-300">Insert your filming location for weather data</p>
         <input
           type="text"
-          placeholder="City"
+          placeholder="Helsinki"
           className="p-2 mt-2 mr-2 rounded-md text-black"
           value={cityInput}
           onChange={(e) => setCityInput(e.target.value)}
         />
         <button
-          className="w-20 bg-primary p-2 rounded-md hover:bg-secondary duration-300 ease-in-out"
+          className="w-20 bg-primary p-2 rounded-full uppercase font-bold hover:bg-secondary duration-300 ease-in-out"
           onClick={() => fetchWeatherData(cityInput)}
         >
           Set
-        </button>
+        </button>  
       </article>
 
       {/* Navigation buttons for calendar */}
       <article>
-        <section className="grid grid-cols-2 px-10">
+        <section className="px-10 flex justify-center gap-10 pb-5">
           <button
-            className="w-36 bg-primary p-2 rounded-md hover:bg-secondary duration-300 ease-in-out"
+            className="uppercase bg-primary p-2 rounded-full hover:bg-secondary duration-300 ease-in-out"
             onClick={() => handleMonthChange(-1)}
           >
-            Previous month
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
+              <path fillRule="evenodd" d="M11.03 3.97a.75.75 0 0 1 0 1.06l-6.22 6.22H21a.75.75 0 0 1 0 1.5H4.81l6.22 6.22a.75.75 0 1 1-1.06 1.06l-7.5-7.5a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 0 1 1.06 0Z" clipRule="evenodd" />
+            </svg>
           </button>
+          <div className="uppercase font-bold text-xl self-center justify-self-center">{selectedMonth}, {selectedYear}</div>
           <button
-            className="w-36 place-self-end bg-primary p-2 rounded-md hover:bg-secondary duration-300 ease-in-out"
+            className="uppercase place-self-end bg-primary p-2 rounded-full hover:bg-secondary duration-300 ease-in-out"
             onClick={() => handleMonthChange(1)}
           >
-            Next month
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
+              <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06l6.22-6.22H3a.75.75 0 0 1 0-1.5h16.19l-6.22-6.22a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
+            </svg>
           </button>
         </section>
       </article>
@@ -248,24 +254,44 @@ function SchedulePage() {
                     isOutsideMonth ? "text-gray-400" : ""
                   }`}
                 >
-                  <div className="text-sm font-bold">{date.getDate()}</div>
+                  <div className="text-sm font-bold flex justify-center gap-1">
+                    {date.getDate()}
+                    
+                    {/* sum the day's schooting duration */}
+                    {gridData[dayKey]?.reduce((sum, scene) => sum + scene.duration, 0) > 0 && (
+                        <div className="font-normal">
+                          ({gridData[dayKey].reduce((sum, scene) => sum + scene.duration, 0)}h)
+                        </div>
+                    )} 
+                  </div>
 
                   {/* Display weather data for the day */}
                   {weatherData[dayKey] && (
-                    <div className="weather-info">
+                    <div className="weather-info text-sm">
                       <p>{weatherData[dayKey].weather?.description}</p>
                       <p>{weatherData[dayKey].temp}°C</p>
                     </div>
                   )}
 
+                  {/* render day's shooting scene */}       
                   {gridData[dayKey]?.map((scene, sceneIndex) => (
                     <div
                       key={sceneIndex}
-                      className={`rounded-md w-full my-1 p-1 ${scene.bgColor} cursor-pointer`}
+                      className={`rounded-md w-full my-1 ${scene.bgColor} cursor-pointer text-left`}
                       onClick={() => openSceneModal(scene)}
                     >
                       <div>
-                        {scene.scene_number}: {scene.location}
+                        <div className="px-1 border-b-2 border-blackbg">
+                          {scene.exact_start_time} - {scene.exact_end_time} ({scene.duration}h)
+                        </div>
+                        <div className="px-1 border-b-2 border-blackbg">
+                          <span className="font-bold">{scene.scene_number}:</span> {scene.location}, {scene.place}
+                        </div>
+                        <div className="px-1">
+                          {scene.characters.map((character, index) => (
+                            <div key={index}>{character}</div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   ))}
