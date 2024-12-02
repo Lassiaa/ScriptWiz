@@ -366,21 +366,31 @@ const Overview = () => {
 
         {/* Readability arc */}
         <div className="border-2 border-gray-300 rounded-md">
-          <section className="flex h-64">
+          <section className="flex h-64 relative group">
             <div className="flex flex-col min-w-52 w-52 border-x sticky left-0 z-10 bg-white text-black">
               <p className="h-full pl-2 content-center font-bold">Dialogues</p>
+              <div className="z-30 absolute top-0 left-0 transform -translate-y-1/2 ml-1 mt-16 w-40 p-2 bg-gray-700 text-white text-sm rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:block transition-opacity duration-300">
+                How many dialogues are in a scene
+              </div>
             </div>
+
             <DialogueArc />
           </section>
-          <section className="flex h-64 border-y">
+          <section className="flex h-64 border-y relative group">
             <div className="flex flex-col min-w-52 w-52 border-x sticky left-0 z-10 bg-white text-black">
               <p className="h-full pl-2 content-center font-bold">Intimacy</p>
+              <div className="z-30 absolute top-0 left-0 transform -translate-y-1/2 ml-1 mt-16 w-40 p-2 bg-gray-700 text-white text-sm rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:block transition-opacity duration-300">
+                Intencity of intimacy on a scale of 0-10
+              </div>
             </div>
             <IntimacyArc />
           </section>
-          <section className="flex h-64">
+          <section className="flex h-64 relative group">
             <div className="flex flex-col min-w-52 w-52 border-x sticky left-0 z-10 bg-white text-black">
               <p className="h-full pl-2 content-center font-bold">Violence</p>
+              <div className="z-30 absolute top-0 left-0 transform -translate-y-1/2 ml-1 mt-16 w-40 p-2 bg-gray-700 text-white text-sm rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:block transition-opacity duration-300">
+                Intencity of violence on a scale of 0-10
+              </div>
             </div>
             <ViolenceArc />
           </section>
