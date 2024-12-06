@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchCharacters } from "../db/firestoreService";
 import { useFileContext } from "../contexts/fileContext";
+import CharacterImportanceArc from "../components/CharacterImportanceArc";
 
 function CharacterBrowsingPage() {
   const navigate = useNavigate();
@@ -51,6 +52,15 @@ function CharacterBrowsingPage() {
         <h1 className="text-3xl font-bold uppercase">Characters</h1>
         <p className="">{fileName}</p>
       </article>
+
+      <article>
+        <h2 className="text-2xl font-bold p-10">Character Importance</h2>
+        <div className="flex w-full h-96 px-10">
+          <CharacterImportanceArc />
+        </div>
+      </article>
+
+      <h2 className="text-2xl font-bold p-10">Character List</h2>
 
       <article className="p-10 flex flex-col-reverse lg:flex-row gap-4">
         {/* Characters grid */}

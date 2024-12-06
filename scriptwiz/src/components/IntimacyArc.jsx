@@ -26,9 +26,7 @@ const IntimacyArc = () => {
   // Mock data for the arc page generated using AI
   const scenes = arcData.scenes;
 
-  console.log(scenes);
-
-  // Calculate the intensity of each scene. Calculation is created using AI
+  // Calculate the intensity of intimacy in each scene. Calculation is created using AI
   const calculateIntimacy = (scene) => {
     return Math.min(1 + scene.cast_count * 0.5 + scene.intimacy_count * 5, 10);
   };

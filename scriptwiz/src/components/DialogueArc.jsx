@@ -26,12 +26,12 @@ const DialogueArc = () => {
   // Mock data for the arc page generated using AI
   const scenes = arcData.scenes;
 
-  // Calculate the intensity of each scene. Calculation is created using AI
+  // Calculate the amount of dialogues in each scene. Calculation is created using AI
   const calculateDialogues = (scene) => {
     return scene.dialogues_count;
   };
 
-  const intensities = scenes.map((scene) => calculateDialogues(scene));
+  const calculation = scenes.map((scene) => calculateDialogues(scene));
 
   // Chart data and options
   const data = {
@@ -39,7 +39,7 @@ const DialogueArc = () => {
     datasets: [
       {
         label: "Scene Dialogues",
-        data: intensities,
+        data: calculation,
         borderColor: "rgba(37, 150, 235, 1)",
         borderWidth: 4,
         fill: false,

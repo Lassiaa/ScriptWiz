@@ -26,9 +26,7 @@ const ViolenceArc = () => {
   // Mock data for the arc page generated using AI
   const scenes = arcData.scenes;
 
-  console.log(scenes);
-
-  // Calculate the intensity of each scene. Calculation is created using AI
+  // Calculate the intensity of violence in each scene. Calculation is created using AI
   const calculateViolence = (scene) => {
     return Math.min(1 + scene.cast_count * 0.5 + scene.stunts_count * 5, 10);
   };
