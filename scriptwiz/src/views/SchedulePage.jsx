@@ -34,6 +34,7 @@ function SchedulePage() {
   };
 
   // Close modal on escape key press to improve UX
+  /*
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
@@ -46,6 +47,7 @@ function SchedulePage() {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+  */
 
   // Set up the days of the week for the grid
   const days = [
@@ -250,11 +252,11 @@ function SchedulePage() {
               return (
                 <div
                   key={index}
-                  className={`border p-1 relative rounded-sm h-auto min-h-28 ${
+                  className={`border relative rounded-sm h-auto min-h-28 ${
                     isOutsideMonth ? "text-gray-400" : ""
                   }`}
                 >
-                  <div className="text-sm font-bold flex justify-center gap-1">
+                  <div className="text-sm font-bold flex justify-center gap-1 p-1">
                     {date.getDate()}
                     
                     {/* sum the day's schooting duration */}
@@ -268,12 +270,99 @@ function SchedulePage() {
                   {/* Display weather data for the day */}
                   {weatherData[dayKey] && (
                     <div className="weather-info text-sm">
-                      <p>{weatherData[dayKey].weather?.description}</p>
-                      <p>{weatherData[dayKey].temp}°C</p>
+                      <div className="border-b p-2">
+                        <p>{weatherData[dayKey].weather?.description}</p>
+                        <p className="font-bold">{weatherData[dayKey].temp}°C</p>
+                      </div>
+                      {/* rain/snow data */}
+                      <div className={
+                        weatherData[dayKey].snow > 0 || weatherData[dayKey].precip > 0
+                          ? "border-b"
+                          : ""
+                      }>
+                        {weatherData[dayKey].precip > 0 && (
+                          <p className="flex gap-1 items-center p-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
+                              <g
+                                fill="none"
+                                stroke="#fff"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                              >
+                                <path d="M7 16.3c2.2 0 4-1.83 4-4.05c0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05" />
+                                <path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97" />
+                              </g>
+                            </svg>
+                            {weatherData[dayKey].precip.toFixed(2)} mm
+                          </p>
+                        )}
+                        {weatherData[dayKey].snow > 0 && (
+                          <p className="flex gap-1 items-center p-2">
+                            <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
+                              <path
+                                fill="none"
+                                stroke="#fff"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M2 12h20M12 2v20m8-6l-4-4l4-4M4 8l4 4l-4 4M16 4l-4 4l-4-4m0 16l4-4l4 4"
+                              />
+                            </svg>
+                          </span>
+                            {weatherData[dayKey].snow.toFixed(1)} mm
+                          </p>
+                        )}
+                      </div>
+                      {/* sunrise and sunset data */}
+                      <p className="flex gap-1 items-center p-2">
+                        <span>
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
+                            <g
+                              fill="none"
+                              stroke="#ffffff"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                            >
+                              <circle cx="12" cy="12" r="4" />
+                              <path
+                                d="M12 3v1m0 16v1m-9-9h1m16 0h1m-2.636-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707.707"
+                              />
+                            </g>
+                          </svg>
+                        </span>
+                        {new Date(weatherData[dayKey].sunrise_ts * 1000).toLocaleTimeString('en-US', {
+                          hour: 'numeric',
+                          minute: 'numeric',
+                          hour12: true, // Use false for 24-hour format
+                        })}
+                      </p>
+                      <p className="flex gap-1 items-center p-2">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
+                              <path
+                                fill="none"
+                                stroke="#fff"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M12 10V2m-7.07 8.93l1.41 1.41M2 18h2m16 0h2m-2.93-7.07l-1.41 1.41M22 22H2M16 6l-4 4l-4-4m8 12a4 4 0 0 0-8 0"
+                              />
+                            </svg>
+                          </span>
+                          {new Date(weatherData[dayKey].sunset_ts * 1000).toLocaleTimeString('en-US', {
+                            hour: 'numeric',
+                            minute: 'numeric',
+                            hour12: true, // Use false for 24-hour format
+                          })}
+                      </p>
                     </div>
                   )}
 
-                  {/* render day's shooting scene */}       
+                  {/* render day's shooting scene */}
+                  <div className="m-1">       
                   {gridData[dayKey]?.map((scene, sceneIndex) => (
                     <div
                       key={sceneIndex}
@@ -295,6 +384,7 @@ function SchedulePage() {
                       </div>
                     </div>
                   ))}
+                  </div>
                 </div>
               );
             })}
