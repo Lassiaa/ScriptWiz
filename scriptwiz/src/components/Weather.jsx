@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 function Weather() {
+  const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState({});
 
@@ -11,7 +12,7 @@ function Weather() {
 
     try {
       const response = await axios.get(
-        `https://api.weatherbit.io/v2.0/forecast/daily?city=${cityName}&key=344958b1bf8d4dc285bcfd99e5bd47a0`
+        `https://api.weatherbit.io/v2.0/forecast/daily?city=${cityName}&key=${apiKey}`
       );
       setCity(response.data.city_name);
 

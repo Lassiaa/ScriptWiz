@@ -48,7 +48,7 @@ const CharacterImportanceArc = () => {
       {
         label: "Scene Dialogues",
         data: characterImportance.map((char) => char.importance),
-        backgroundColor: "rgba(37, 150, 235, 0.8)", // Bar fill color
+        backgroundColor: "rgba(37, 150, 235, 0.8)",
         borderColor: "rgba(37, 150, 235, 1)",
         borderWidth: 1,
       },
