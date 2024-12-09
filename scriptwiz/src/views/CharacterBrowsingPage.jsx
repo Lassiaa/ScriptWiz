@@ -54,7 +54,8 @@ function CharacterBrowsingPage() {
       </article>
 
       <article>
-        <h2 className="text-2xl font-bold p-10">Character Importance</h2>
+        {/* Character role distribution chart */}
+        <h2 className="text-2xl font-bold p-10">Character role distribution</h2>
         <div className="flex w-full h-96 px-10">
           <CharacterImportanceArc />
         </div>

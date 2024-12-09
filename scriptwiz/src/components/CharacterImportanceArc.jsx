@@ -46,7 +46,7 @@ const CharacterImportanceArc = () => {
     labels: characterImportance.map((char) => char.name),
     datasets: [
       {
-        label: "Scene Dialogues",
+        label: "Role importance",
         data: characterImportance.map((char) => char.importance),
         backgroundColor: "rgba(37, 150, 235, 0.8)",
         borderColor: "rgba(37, 150, 235, 1)",
@@ -64,7 +64,7 @@ const CharacterImportanceArc = () => {
       },
       title: {
         display: false,
-        text: "Scene Intensity Chart",
+        text: "Roles in the movie",
       },
     },
     scales: {

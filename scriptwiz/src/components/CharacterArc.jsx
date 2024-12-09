@@ -27,27 +27,40 @@ const CharacterArc = ({ characterName }) => {
 
   // Calculate importance for the given character in each scene
   const calculateImportance = (scene) => {
-    const baseImportance = 5;
+    const baseImportance = 0;
 
     // Check if the character is listed as a cast member
     const isCastMember = scene.elements.cast_members.some(
       (cast) => cast.name.toLowerCase() === characterName.toLowerCase()
     );
 
-    // Number of dialogues
+    // Number of dialogues directly involving the character
     const dialogues = (
       scene.sceneText.match(new RegExp(`\\b${characterName}\\b`, "gi")) || []
     ).length;
 
-    // Actions related to the character in "intimacy"
-    const actions = scene.elements.intimacy.filter((action) =>
-      action.toLowerCase().includes(characterName.toLowerCase())
+    // Number of mentions of the character
+    const mentions = (
+      scene.sceneText.match(new RegExp(characterName, "gi")) || []
     ).length;
 
-    if (!isCastMember && dialogues === 0 && actions === 0) {
-      // Skip the scene if the character isn't involved and not a cast member
-      return 0;
-    }
+    // Interactions with other main characters
+    const mainCharacters = scene.elements.cast_members.map((cast) =>
+      cast.name.toLowerCase()
+    );
+    const interactionCount = mainCharacters.filter(
+      (name) =>
+        name !== characterName.toLowerCase() &&
+        scene.sceneText.toLowerCase().includes(name)
+    ).length;
+
+    // Emotional stakes (keywords to assess tone)
+    const emotionalStakesKeywords = ["angry", "crying", "yelling", "love"];
+    const emotionalStakes = emotionalStakesKeywords.some((keyword) =>
+      scene.sceneText.toLowerCase().includes(keyword)
+    )
+      ? 5
+      : 0;
 
     // Scene duration in minutes
     const sceneDuration = scene.shooting_time
@@ -57,18 +70,26 @@ const CharacterArc = ({ characterName }) => {
     // Number of pages
     const pages = scene.pages || 0;
 
-    // Adjust weights as needed
-    const dialogueWeight = 2;
-    const actionWeight = 3;
-    const durationWeight = 0.5;
-    const pageWeight = 1;
+    // Weights for each factor
+    const weights = {
+      castMemberWeight: 1,
+      dialogueWeight: 2,
+      mentionWeight: 1,
+      interactionWeight: 2,
+      emotionalStakesWeight: 5,
+      durationWeight: 0.5,
+      pageWeight: 1,
+    };
 
     return (
       baseImportance +
-      dialogues * dialogueWeight +
-      actions * actionWeight +
-      sceneDuration * durationWeight +
-      pages * pageWeight
+      (isCastMember ? weights.castMemberWeight : 0) +
+      dialogues * weights.dialogueWeight +
+      mentions * weights.mentionWeight +
+      interactionCount * weights.interactionWeight +
+      emotionalStakes * weights.emotionalStakesWeight +
+      sceneDuration * weights.durationWeight +
+      pages * weights.pageWeight
     );
   };
 
@@ -82,13 +103,12 @@ const CharacterArc = ({ characterName }) => {
   const minImportance = Math.min(...rawImportanceData);
   const maxImportance = Math.max(...rawImportanceData);
 
-  // Avoid divide-by-zero when min and max are equal
   const normalizedImportanceData =
     minImportance === maxImportance
-      ? rawImportanceData.map(() => 50) // Assign all to a neutral value if no variation
+      ? rawImportanceData.map(() => 2)
       : rawImportanceData.map((value) =>
           Math.round(
-            ((value - minImportance) / (maxImportance - minImportance)) * 100
+            ((value - minImportance) / (maxImportance - minImportance)) * 10
           )
         );
 
@@ -96,7 +116,7 @@ const CharacterArc = ({ characterName }) => {
     labels: scenes.map((scene) => `Scene ${scene.scene_number}`),
     datasets: [
       {
-        label: `Importance of ${characterName}`,
+        label: `Impact of ${characterName}`,
         data: normalizedImportanceData,
         borderColor: "rgba(37, 150, 235, 1)",
         borderWidth: 4,
@@ -137,13 +157,13 @@ const CharacterArc = ({ characterName }) => {
         },
         title: {
           display: false,
-          text: "Importance (0–100)",
+          text: "Importance (0–10)",
         },
         ticks: {
           color: "rgba(255, 255, 255, 1)",
         },
         beginAtZero: true,
-        max: 100,
+        max: 10,
       },
     },
   };

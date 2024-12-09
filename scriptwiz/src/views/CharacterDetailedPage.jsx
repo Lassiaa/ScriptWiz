@@ -15,7 +15,7 @@ const CharacterDetailedPage = () => {
     <main className="mainStyling p-10">
       <h1 className="text-center pb-10">{character.name}</h1>
       <article>
-        <h2 className="py-6 text-2xl">Character Importance</h2>
+        <h2 className="py-6 text-2xl">Character impact in scenes</h2>
         <div className="flex w-full h-96 px-10">
           <CharacterArc characterName={character.name} />
         </div>
