@@ -87,11 +87,6 @@ function CharacterBrowsingPage() {
             value={searchTerm}
             onChange={handleSearchChange}
           />
-
-          {/* Select dropdown */}
-          <select className="border rounded px-2 py-1 w-full">
-            <option value="">Select</option>
-          </select>
         </div>
       </article>
     </main>
